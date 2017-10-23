@@ -1,13 +1,17 @@
 #!/bin/sh
 # Script for installing necessary software on an Ubuntu 16.04 VM
+
+# DM: Utility packages
 sudo add-apt-repository ppa:ubuntugis/ppa
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install sshfs mesa-utils manpages firefox xarchiver
 sudo apt-get install qgis spatialite-gui spatialite-bin gdal-bin
-# R: the base package is quite old, but it's stable, use r-cran-* for packages
+
+# DM: Install R from the CRAN repository
+
 sudo apt-get install r-base r-base-dev rkward spyder
-# Hacks to get RStudio working (apparently there is dependency hell preventing from it being shipped)
+# NOTE: RKWard is built against the default R packages. It needs to be installed from a PPA for the linked-to-CRAN version.
 
 # Install requirements for packages not part of the CRAN distribution
 sudo apt-get install libgdal-dev
