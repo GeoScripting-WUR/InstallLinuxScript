@@ -9,6 +9,7 @@ sudo apt-get install sshfs mesa-utils manpages firefox xarchiver
 sudo apt-get install qgis spatialite-gui spatialite-bin gdal-bin
 
 # DM: Install R from the CRAN repository
+# add manual change in sources.list
 
 sudo apt-get install r-base r-base-dev rkward spyder
 # NOTE: RKWard is built against the default R packages. It needs to be installed from a PPA for the linked-to-CRAN version.
