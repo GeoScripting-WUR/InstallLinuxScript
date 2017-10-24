@@ -20,7 +20,7 @@ rm rstudio-xenial-1.1.383-amd64
 
 
 # Install requirements for packages not part of the CRAN distribution
-sudo apt-get install libgdal-dev libgeos-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev
+sudo apt-get install libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
 # Source-install "raster", "googleVis", "lubridate", "leaflet".
 # Make sure to use a directory common to RStudio and RKWard: RKWard settings
 # ~/R/x86_64-pc-linux-gnu-library/3.2
