@@ -1,19 +1,21 @@
 #!/bin/sh
 # Script for installing necessary software on an Ubuntu 16.04 VM
 
-# DM: Utility packages
+# DM: GDAL, GEOS, Fiona, SpatiaLite
 sudo add-apt-repository ppa:ubuntugis/ppa
+# DM: RKWard compiled against CRAN
+sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install sshfs mesa-utils manpages firefox xarchiver
+sudo apt-get install sshfs mesa-utils manpages firefox xarchiver spyder gdebi-core
 sudo apt-get install qgis spatialite-gui spatialite-bin gdal-bin
 
 # DM: Install R from the CRAN repository
+sudo apt-get install r-base r-base-dev rkward
 # add manual change in sources.list
 
 # RStudio installation
 RSTUDIO_VERSION="1.1.383"
-sudo apt-get install r-base r-base-dev rkward spyder gdebi-core
 wget https://download1.rstudio.org/rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
 sudo gdebi -n rrstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
 rm rstudio-xenial-${RSTUDIO_VERSION}-amd64
