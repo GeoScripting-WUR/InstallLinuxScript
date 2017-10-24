@@ -11,10 +11,12 @@ sudo apt-get install qgis spatialite-gui spatialite-bin gdal-bin
 # DM: Install R from the CRAN repository
 # add manual change in sources.list
 
+# RStudio installation
+RSTUDIO_VERSION="1.1.383"
 sudo apt-get install r-base r-base-dev rkward spyder gdebi-core
-wget https://download1.rstudio.org/rstudio-xenial-1.1.383-amd64.deb
-sudo gdebi -n rrstudio-xenial-1.1.383-amd64.deb
-rm rstudio-xenial-1.1.383-amd64
+wget https://download1.rstudio.org/rstudio-xenial-{$RSTUDIO_VERSION}-amd64.deb
+sudo gdebi -n rrstudio-xenial-{$RSTUDIO_VERSION}-amd64.deb
+rm rstudio-xenial-{$RSTUDIO_VERSION}-amd64
 # NOTE: RKWard is built against the default R packages. It needs to be installed from a PPA for the linked-to-CRAN version.
 # NOTE2: RStudio is installed from rstudio repository
 
