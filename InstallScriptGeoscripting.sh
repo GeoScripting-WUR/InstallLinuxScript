@@ -10,18 +10,18 @@ sudo apt-get upgrade
 sudo apt-get install sshfs mesa-utils manpages firefox xarchiver spyder gdebi-core
 sudo apt-get install spatialite-gui spatialite-bin gdal-bin git-gui
 
-# DM: Install R from the CRAN repository
-sudo apt-get install r-base r-base-dev rkward
-# add manual change in sources.list
+# DM: Install R from the CRAN repository and RKWard
+sudo add-apt-repository "deb http://cran-mirror.cs.uu.nl/bin/linux/ubuntu xenial/"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt-get update && sudo apt-get install r-base r-base-dev rkward
 
 # RStudio installation
 RSTUDIO_VERSION="1.1.383"
+pushd /tmp
 wget https://download1.rstudio.org/rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
-sudo gdebi -n rrstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
-rm rstudio-xenial-${RSTUDIO_VERSION}-amd64
-# NOTE: RKWard is built against the default R packages. It needs to be installed from a PPA for the linked-to-CRAN version.
-# NOTE2: RStudio is installed from rstudio repository
-
+sudo gdebi -n rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
+rm rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
+popd
 
 # Install requirements for packages not part of the CRAN distribution
 sudo apt-get install libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
@@ -32,19 +32,19 @@ sudo apt-get install r-cran-spatstat r-cran-jsonlite r-cran-zoo r-cran-magrittr 
 sudo apt-get install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-mime r-cran-dichromat r-cran-plyr r-cran-munsell r-cran-labeling r-cran-base64enc r-cran-rcolorbrewer r-cran-scales r-cran-sp
 
 # QGIS
+# DM: NOTE: Check if the key changes in 2018!
 sudo add-apt-repository http://qgis.org/debian
-wget -O - http://qgis.org/downloads/qgis-2017.gpg.key | gpg --import
-gpg --fingerprint CAEB3DC3BDF7FB45
-gpg --export --armor CAEB3DC3BDF7FB45 | sudo apt-key add -
+sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
 sudo apt-get update && sudo apt-get install qgis python-qgis  
 
 # Google Earth
-pushd /tmp
-mkdir google-earth && cd google-earth
+mkdir /tmp/google-earth
+pushd /tmp/google-earth
 sudo apt-get install lsb-core lsb-base lsb-invalid-mta
 wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
 sudo dpkg -i google-earth-stable*.deb
 popd
+rm -r /tmp/google-earth
 
 # PostGIS
 sudo add-apt-repository http://apt.postgresql.org/pub/repos/apt
