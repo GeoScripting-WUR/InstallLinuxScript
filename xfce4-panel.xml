@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="panels" type="empty">
+    <property name="panel-0" type="empty">
+      <property name="position" type="empty"/>
+      <property name="length" type="empty"/>
+      <property name="position-locked" type="empty"/>
+      <property name="plugin-ids" type="empty"/>
+      <property name="background-style" type="empty"/>
+      <property name="background-alpha" type="empty"/>
+      <property name="size" type="empty"/>
+      <property name="length-adjust" type="empty"/>
+      <property name="span-monitors" type="empty"/>
+      <property name="enter-opacity" type="empty"/>
+      <property name="leave-opacity" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="autohide-behavior" type="empty"/>
+      <property name="disable-struts" type="empty"/>
+      <property name="nrows" type="empty"/>
+    </property>
+    <property name="panel-1" type="empty">
+      <property name="autohide-behavior" type="empty"/>
+      <property name="background-alpha" type="empty"/>
+      <property name="background-style" type="empty"/>
+      <property name="disable-struts" type="empty"/>
+      <property name="enter-opacity" type="empty"/>
+      <property name="leave-opacity" type="empty"/>
+      <property name="length" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="nrows" type="empty"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="5"/>
+        <value type="int" value="3"/>
+        <value type="int" value="7"/>
+        <value type="int" value="1"/>
+        <value type="int" value="14"/>
+        <value type="int" value="6"/>
+      </property>
+      <property name="position" type="empty"/>
+      <property name="position-locked" type="empty"/>
+      <property name="size" type="uint" value="25"/>
+      <property name="length-adjust" type="empty"/>
+    </property>
+    <property name="panel-2" type="empty">
+      <property name="autohide-behavior" type="empty"/>
+      <property name="background-alpha" type="empty"/>
+      <property name="background-style" type="empty"/>
+      <property name="disable-struts" type="empty"/>
+      <property name="enter-opacity" type="empty"/>
+      <property name="leave-opacity" type="empty"/>
+      <property name="length" type="empty"/>
+      <property name="length-adjust" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="nrows" type="empty"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="8"/>
+        <value type="int" value="9"/>
+        <value type="int" value="11"/>
+        <value type="int" value="12"/>
+        <value type="int" value="13"/>
+      </property>
+      <property name="position" type="empty"/>
+      <property name="position-locked" type="empty"/>
+      <property name="size" type="empty"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-1" type="string" value="systray">
+      <property name="button-icon" type="empty"/>
+      <property name="button-title" type="empty"/>
+      <property name="custom-menu" type="empty"/>
+      <property name="show-button-title" type="empty"/>
+      <property name="show-generic-names" type="empty"/>
+      <property name="show-menu-icons" type="empty"/>
+      <property name="show-tooltips" type="empty"/>
+      <property name="names-visible" type="array">
+        <value type="string" value="networkmanager applet"/>
+      </property>
+    </property>
+    <property name="plugin-2" type="empty">
+      <property name="flat-buttons" type="empty"/>
+      <property name="show-button-type" type="empty"/>
+      <property name="grouping" type="empty"/>
+      <property name="include-all-monitors" type="empty"/>
+      <property name="include-all-workspaces" type="empty"/>
+      <property name="middle-click" type="empty"/>
+      <property name="show-handle" type="empty"/>
+      <property name="show-labels" type="empty"/>
+      <property name="show-only-minimized" type="empty"/>
+      <property name="show-wireframes" type="empty"/>
+      <property name="sort-order" type="empty"/>
+      <property name="switch-workspace-on-unminimize" type="empty"/>
+      <property name="window-scrolling" type="empty"/>
+    </property>
+    <property name="plugin-3" type="empty">
+      <property name="style" type="empty"/>
+      <property name="expand" type="empty"/>
+    </property>
+    <property name="plugin-4" type="empty">
+      <property name="show-frame" type="empty"/>
+      <property name="size-max" type="empty"/>
+      <property name="names-visible" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="miniature-view" type="empty"/>
+      <property name="rows" type="empty"/>
+    </property>
+    <property name="plugin-5" type="string" value="showdesktop">
+      <property name="items" type="empty"/>
+      <property name="digital-format" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="show-frame" type="empty"/>
+      <property name="tooltip-format" type="empty"/>
+      <property name="align-left" type="empty"/>
+      <property name="mode-whitelist" type="empty"/>
+      <property name="single-row" type="empty"/>
+      <property name="known-indicators" type="empty"/>
+    </property>
+    <property name="plugin-6" type="string" value="clock">
+      <property name="blacklist" type="empty"/>
+      <property name="known-indicators" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="show-frame" type="empty"/>
+      <property name="size-max" type="empty"/>
+      <property name="names-visible" type="empty"/>
+      <property name="align-left" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="mode-whitelist" type="empty"/>
+      <property name="single-row" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-7" type="empty">
+      <property name="style" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="appearance" type="empty"/>
+      <property name="ask-confirmation" type="empty"/>
+      <property name="digital-format" type="empty"/>
+    </property>
+    <property name="plugin-8" type="string" value="whiskermenu">
+      <property name="digital-format" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="show-frame" type="empty"/>
+      <property name="size-max" type="empty"/>
+      <property name="names-visible" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+      <property name="tooltip-format" type="empty"/>
+    </property>
+    <property name="plugin-10" type="empty">
+      <property name="items" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-11" type="empty">
+      <property name="flat-buttons" type="empty"/>
+      <property name="grouping" type="empty"/>
+      <property name="include-all-monitors" type="empty"/>
+      <property name="include-all-workspaces" type="empty"/>
+      <property name="show-handle" type="empty"/>
+      <property name="show-labels" type="empty"/>
+      <property name="show-only-minimized" type="empty"/>
+      <property name="show-wireframes" type="empty"/>
+      <property name="sort-order" type="empty"/>
+      <property name="switch-workspace-on-unminimize" type="empty"/>
+      <property name="window-scrolling" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="ask-confirmation" type="empty"/>
+      <property name="digital-format" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="show-frame" type="empty"/>
+      <property name="tooltip-format" type="empty"/>
+    </property>
+    <property name="plugin-12" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-13" type="empty">
+      <property name="miniature-view" type="empty"/>
+      <property name="rows" type="empty"/>
+      <property name="workspace-scrolling" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="flat-buttons" type="empty"/>
+      <property name="grouping" type="empty"/>
+      <property name="include-all-monitors" type="empty"/>
+      <property name="include-all-workspaces" type="empty"/>
+      <property name="show-handle" type="empty"/>
+      <property name="show-labels" type="empty"/>
+      <property name="show-only-minimized" type="empty"/>
+      <property name="show-wireframes" type="empty"/>
+      <property name="sort-order" type="empty"/>
+      <property name="style" type="empty"/>
+      <property name="switch-workspace-on-unminimize" type="empty"/>
+      <property name="window-scrolling" type="empty"/>
+    </property>
+    <property name="plugin-9" type="string" value="separator">
+      <property name="digital-format" type="empty"/>
+      <property name="mode" type="empty"/>
+      <property name="show-frame" type="empty"/>
+      <property name="tooltip-format" type="empty"/>
+      <property name="expand" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="style" type="uint" value="2"/>
+      <property name="miniature-view" type="empty"/>
+      <property name="rows" type="empty"/>
+      <property name="show-names" type="empty"/>
+      <property name="workspace-scrolling" type="empty"/>
+    </property>
+    <property name="plugin-14" type="string" value="xkb-plugin">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="show-handle" type="empty"/>
+    </property>
+    <property name="plugin-15" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+      <property name="base-directory" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="miniature-view" type="empty"/>
+      <property name="rows" type="empty"/>
+      <property name="workspace-scrolling" type="empty"/>
+    </property>
+    <property name="plugin-16" type="empty">
+      <property name="button-title" type="empty"/>
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-17" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="items" type="empty"/>
+      <property name="show-button-type" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-18" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-19" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-20" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-21" type="empty">
+      <property name="items" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-22" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-23" type="empty">
+      <property name="items" type="empty"/>
+      <property name="show-handle" type="empty"/>
+    </property>
+    <property name="plugin-24" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-25" type="empty">
+      <property name="base-directory" type="empty"/>
+    </property>
+    <property name="plugin-26" type="empty"/>
+    <property name="plugin-27" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+  </property>
+  <property name="configver" type="empty"/>
+</channel>
