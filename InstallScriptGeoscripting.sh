@@ -26,6 +26,10 @@ sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 sudo apt install sshfs mesa-utils manpages firefox spyder gdebi-core
 sudo apt install spatialite-gui spatialite-bin gdal-bin git-gui
 
+# DM: Add Git GUI into the menu
+sudo mkdir /usr/local/share/applications/
+sudo cp git-gui.desktop /usr/local/share/applications/
+
 # DM: Install R from the CRAN repository and RKWard
 sudo add-apt-repository "deb http://cran-mirror.cs.uu.nl/bin/linux/ubuntu xenial/"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
