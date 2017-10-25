@@ -73,7 +73,7 @@ sudo apt remove indicator-session
 # Also remove gnome utilities with Xfce equivalents and games
 sudo systemctl disable rsyslog snapd
 sudo systemctl stop rsyslog syslog.socket snapd snapd.service
-sudo apt purge --auto-remove rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gnome-flashback gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal
+sudo apt purge --auto-remove rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gnome-flashback gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal blueman evolution-data-server
 
 # Clean all old kernels
 sudo apt install byobu
