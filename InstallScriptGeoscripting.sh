@@ -1,6 +1,9 @@
 #!/bin/sh
 # Script for installing necessary software on an Ubuntu 16.04 VM
 
+# DM: VMWare Horizon settings: do not inherit keyboard layouts
+sudo sed -i "s/#KeyboardLayoutSync=FALSE/KeyboardLayoutSync=FALSE/" /etc/vmware/viewagent-custom.conf
+
 # DM: Update
 sudo apt update
 sudo apt upgrade
@@ -10,7 +13,9 @@ sudo apt install xubuntu-desktop
 # DM: Disable shutdown/reboot buttons
 sudo mkdir /etc/xdg/xfce4/kiosk
 sudo cp kioskrc /etc/xdg/xfce4/kiosk
-# DM: Set Xfce as default
+# DM: Set default panel layout
+sudo cp xfce4-panel.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
+# DM: Set Xfce as default in LightDM
 sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
 
 # DM: GDAL, GEOS, Fiona, SpatiaLite
