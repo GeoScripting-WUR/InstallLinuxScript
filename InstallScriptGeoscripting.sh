@@ -44,24 +44,27 @@ sudo apt-get install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-c
 
 # QGIS
 # DM: NOTE: Check if the key changes in 2018!
-sudo add-apt-repository http://qgis.org/debian
-sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
-sudo apt-get update && sudo apt-get install qgis python-qgis  
+#sudo add-apt-repository http://qgis.org/debian
+#sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
+#sudo apt-get update && sudo apt-get install qgis python-qgis  
 
 # Google Earth
-mkdir /tmp/google-earth
-pushd /tmp/google-earth
-sudo apt-get install lsb-core lsb-base lsb-invalid-mta
-wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
-sudo dpkg -i google-earth-stable*.deb
-popd
-rm -r /tmp/google-earth
+#mkdir /tmp/google-earth
+#pushd /tmp/google-earth
+#sudo apt-get install lsb-core lsb-base lsb-invalid-mta
+#wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+#sudo dpkg -i google-earth-stable*.deb
+#popd
+#rm -r /tmp/google-earth
 
 # PostGIS
 sudo add-apt-repository http://apt.postgresql.org/pub/repos/apt
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2-scripts postgresql-server-dev-9.5 libpq-dev
+
+# Remove unnecessary software
+sudo apt remove indicator-session
 
 # Remove rsyslog, already have journald
 sudo systemctl disable rsyslog
