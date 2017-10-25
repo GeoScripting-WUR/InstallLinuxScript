@@ -1,12 +1,23 @@
 #!/bin/sh
 # Script for installing necessary software on an Ubuntu 16.04 VM
 
+# DM: Update
+sudo apt-get update
+sudo apt-get upgrade
+
+# DM: Install Xfce
+sudo apt-get install xubuntu-desktop
+# DM: Disable shutdown/reboot buttons
+sudo mkdir /etc/xdg/xfce4/kiosk
+sudo cp kioskrc /etc/xdg/xfce4/kiosk
+# DM: Set Xfce as default
+sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
+
 # DM: GDAL, GEOS, Fiona, SpatiaLite
 sudo add-apt-repository ppa:ubuntugis/ppa
 # DM: RKWard compiled against CRAN
 sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
-sudo apt-get update
-sudo apt-get upgrade
+
 sudo apt-get install sshfs mesa-utils manpages firefox xarchiver spyder gdebi-core
 sudo apt-get install spatialite-gui spatialite-bin gdal-bin git-gui
 
