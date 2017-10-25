@@ -3,6 +3,8 @@
 
 # DM: VMWare Horizon settings: do not inherit keyboard layouts
 sudo sed -i "s/#KeyboardLayoutSync=FALSE/KeyboardLayoutSync=FALSE/" /etc/vmware/viewagent-custom.conf
+# DM: Set sudo timeout to an hour
+sudo sed -i "s/Defaults\tenv_reset/Defaults\tenv_reset,timestamp_timeout=60/" /etc/sudoers
 
 # DM: Update
 sudo apt update
