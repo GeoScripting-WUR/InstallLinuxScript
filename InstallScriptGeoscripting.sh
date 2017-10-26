@@ -26,7 +26,7 @@ sudo add-apt-repository ppa:ubuntugis/ppa
 sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 
 sudo apt install sshfs mesa-utils manpages firefox spyder gdebi-core
-sudo apt install spatialite-gui spatialite-bin gdal-bin git-gui
+sudo apt install spatialite-gui spatialite-bin gdal-bin git-gui qgis python-qgis
 
 # DM: Add Git GUI into the menu
 sudo mkdir /usr/local/share/applications/
