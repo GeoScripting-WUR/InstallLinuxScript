@@ -72,7 +72,9 @@ sudo apt-get install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 
 # Also remove gnome utilities with Xfce equivalents and games
 sudo systemctl disable rsyslog snapd
 sudo systemctl stop rsyslog syslog.socket snapd snapd.service
-sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gnome-flashback gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal blueman evolution-data-server network-manager-gnome network-manager-pptp-gnome
+sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound \
+  rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gnome-flashback gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal \
+  blueman evolution-data-server network-manager-gnome network-manager-pptp-gnome xscreensaver gnome-screensaver light-locker
 
 # Clean all old kernels
 sudo apt install byobu
