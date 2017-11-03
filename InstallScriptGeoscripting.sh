@@ -60,8 +60,8 @@ sudo apt install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-
 #sudo apt-get update && sudo apt-get install qgis python-qgis  
 
 # PostGIS
-sudo add-apt-repository http://apt.postgresql.org/pub/repos/apt
-wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main"
+sudo apt-key adv --keyserver http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc --recv-keys ACCC4CF8
 sudo apt-get update
 sudo apt-get install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2-scripts postgresql-server-dev-9.5 libpq-dev
 
