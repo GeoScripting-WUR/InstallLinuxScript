@@ -64,6 +64,16 @@ sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg
 sudo apt-key adv --keyserver http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc --recv-keys ACCC4CF8
 sudo apt-get update
 sudo apt-get install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2-scripts postgresql-server-dev-9.5 libpq-dev
+# DM: Create a user and a database with these credentials
+PGUSER="geoscripting"
+PGPASS="geoscripting"
+PGDB="geoscripting"
+sudo -u postgres psql -c "CREATE ROLE ${PGUSER} WITH LOGIN CREATEDB"
+sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
+psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
+sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
+# DM: New tables can be added with:
+#psql -h localhost -U ${PGUSER} -d ${PGDB} -f table_creation_statements.sql
 
 # Remove unnecessary software
 
