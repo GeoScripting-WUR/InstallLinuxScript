@@ -69,7 +69,7 @@ PGUSER="geoscripting"
 PGPASS="geoscripting"
 PGDB="geoscripting"
 sudo -u postgres psql -c "CREATE ROLE ${PGUSER} WITH LOGIN CREATEDB"
-sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
+sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASS}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 # DM: New tables can be added with:
