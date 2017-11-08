@@ -16,7 +16,7 @@ sudo apt install xubuntu-desktop
 sudo mkdir /etc/xdg/xfce4/kiosk
 sudo cp kioskrc /etc/xdg/xfce4/kiosk
 # DM: Set default panel layout
-sudo cp xfce4-panel.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
+sudo cp xfce4-panel.xml /etc/xdg/xdg-xubuntu/xfce4/panel/default.xml
 # DM: Set Xfce as default in LightDM
 sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
 
