@@ -8,7 +8,7 @@ sudo sed -i "s/Defaults\tenv_reset/Defaults\tenv_reset,timestamp_timeout=60/" /e
 
 # DM: Update
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
 
 # DM: Install Xfce
 sudo apt install xubuntu-desktop
@@ -25,8 +25,17 @@ sudo add-apt-repository ppa:ubuntugis/ppa
 # DM: RKWard compiled against CRAN
 sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 
-sudo apt install sshfs mesa-utils manpages firefox spyder gdebi-core curl
+# DS: Upgrade software from repositories
+sudo apt update
+sudo apt upgrade
+
+# DS: Install software
+sudo apt install sshfs mesa-utils manpages firefox gdebi-core curl
 sudo apt install spatialite-gui spatialite-bin gdal-bin git-gui qgis python-qgis
+
+# DS: Install Grass and hold version to 7.0.3 
+sudo apt install grass=7.0.3-1build1 grass-core=7.0.3-1build1 grass-doc=7.0.3-1build1 grass-gui=7.0.3-1build1
+sudo apt-mark hold grass grass-gui grass-doc grass-core
 
 # DM: Add Git GUI into the menu
 sudo mkdir /usr/local/share/applications/
