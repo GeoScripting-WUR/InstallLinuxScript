@@ -9,6 +9,7 @@ sudo sed -i "s/Defaults\tenv_reset/Defaults\tenv_reset,timestamp_timeout=60/" /e
 # DM: Update
 sudo apt update
 sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
+sudo apt-mark hold samba
 
 # DM: Install Xfce
 sudo apt install xubuntu-desktop
