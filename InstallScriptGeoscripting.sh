@@ -25,7 +25,7 @@ sudo add-apt-repository ppa:ubuntugis/ppa
 # DM: RKWard compiled against CRAN
 sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 
-sudo apt install sshfs mesa-utils manpages firefox spyder gdebi-core
+sudo apt install sshfs mesa-utils manpages firefox spyder gdebi-core curl
 sudo apt install spatialite-gui spatialite-bin gdal-bin git-gui qgis python-qgis
 
 # DM: Add Git GUI into the menu
@@ -78,7 +78,7 @@ PGPASS="geoscripting"
 PGDB="geoscripting"
 sudo -u postgres psql -c "CREATE ROLE ${PGUSER} WITH LOGIN CREATEDB"
 sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASS}'"
-psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
+psql -h localhost -U ${PGUSER} -p ${PGPASS} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 # DM: New tables can be added with:
 #psql -h localhost -U ${PGUSER} -d ${PGDB} -f table_creation_statements.sql
