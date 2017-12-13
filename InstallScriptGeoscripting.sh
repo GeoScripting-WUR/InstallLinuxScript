@@ -11,7 +11,6 @@ sudo apt update
 sudo apt-mark hold samba
 sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
 
-
 # DM: Install Xfce
 sudo apt install xubuntu-desktop
 # DM: Disable shutdown/reboot buttons
