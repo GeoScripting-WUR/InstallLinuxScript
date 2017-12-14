@@ -26,6 +26,12 @@ sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
 # DM: Set Xfce as default in LightDM
 #sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
 
+# DM: GNOME Fallback options instead, based on dconf
+sudo cp user /etc/dconf/profile/
+sudo mkdir /etc/dconf/db/geoscripting.d
+sudo cp 10-geoscripting /etc/dconf/db/geoscripting.d
+sudo dconf update
+
 # DM: GDAL, GEOS, Fiona, SpatiaLite
 sudo add-apt-repository ppa:ubuntugis/ppa
 # DM: RKWard compiled against CRAN
