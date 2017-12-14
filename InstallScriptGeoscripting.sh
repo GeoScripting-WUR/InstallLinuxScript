@@ -1,6 +1,8 @@
 #!/bin/sh
 # Script for installing necessary software on an Ubuntu 16.04 VM
 
+# WARNING: You should manually run an apt update && apt upgrade before this in an ssh session! Ideally also reboot between that and running this script.
+
 # DM: VMWare Horizon settings: do not inherit keyboard layouts
 sudo sed -i "s/#KeyboardLayoutSync=FALSE/KeyboardLayoutSync=FALSE/" /etc/vmware/viewagent-custom.conf
 # DM: Set to use GNOME Flashback
@@ -72,13 +74,13 @@ sudo apt install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-
 #sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
 #sudo apt-get update && sudo apt-get install qgis python-qgis  
 
-# Miniconda
-MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
-pushd /tmp
-curl -O https://repo.continuum.io/miniconda/${MINICONDA_VERSION}.sh
-bash ${MINICONDA_VERSION}.sh
-rm ${MINICONDA_VERSION}.sh
-popd
+# Miniconda: this should be done by the students themselves!
+#MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
+#pushd /tmp
+#curl -O https://repo.continuum.io/miniconda/${MINICONDA_VERSION}.sh
+#bash ${MINICONDA_VERSION}.sh
+#rm ${MINICONDA_VERSION}.sh
+#popd
 
 # PostGIS
 sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main"
