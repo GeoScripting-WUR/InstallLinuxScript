@@ -1,0 +1,5 @@
+[com/canonical/indicator/session]
+suppress-shutdown-menuitem=true
+
+[org/gnome/desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
