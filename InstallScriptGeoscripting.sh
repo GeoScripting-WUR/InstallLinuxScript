@@ -3,6 +3,8 @@
 
 # DM: VMWare Horizon settings: do not inherit keyboard layouts
 sudo sed -i "s/#KeyboardLayoutSync=FALSE/KeyboardLayoutSync=FALSE/" /etc/vmware/viewagent-custom.conf
+# DM: Set to use GNOME Flashback
+sudo sed -i "s/#UseGnomeFlashback=TRUE/UseGnomeFlashback=TRUE/" /etc/vmware/viewagent-custom.conf
 # DM: Set sudo timeout to an hour
 sudo sed -i "s/Defaults\tenv_reset/Defaults\tenv_reset,timestamp_timeout=60/" /etc/sudoers
 
@@ -11,15 +13,16 @@ sudo apt update
 sudo apt-mark hold samba
 sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
 
+# DM: Current VMWare Horizon apparently bugs out when Xfce is used. Stay with GNOME Flashback for the time being.
 # DM: Install Xfce
-sudo apt install xubuntu-desktop
+#sudo apt install xubuntu-desktop
 # DM: Disable shutdown/reboot buttons
-sudo mkdir /etc/xdg/xfce4/kiosk
-sudo cp kioskrc /etc/xdg/xfce4/kiosk
+#sudo mkdir /etc/xdg/xfce4/kiosk
+#sudo cp kioskrc /etc/xdg/xfce4/kiosk
 # DM: Set default panel layout
-sudo cp xfce4-panel.xml /etc/xdg/xdg-xubuntu/xfce4/panel/default.xml
+#sudo cp xfce4-panel.xml /etc/xdg/xdg-xubuntu/xfce4/panel/default.xml
 # DM: Set Xfce as default in LightDM
-sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
+#sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
 
 # DM: GDAL, GEOS, Fiona, SpatiaLite
 sudo add-apt-repository ppa:ubuntugis/ppa
@@ -93,24 +96,6 @@ sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 # DM: New tables can be added with:
 #psql -h localhost -U ${PGUSER} -d ${PGDB} -f table_creation_statements.sql
 
-# Remove unnecessary software
-
-# Remove rsyslog, already have journald; snapd is for servers; don't need two browsers
-# Vim is confusing and there is nano already, unity and gnome-flashback no longer needed
-# Also remove gnome utilities with Xfce equivalents and games
-sudo systemctl disable rsyslog snapd
-sudo systemctl stop rsyslog syslog.socket snapd snapd.service
-sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound \
-  rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gnome-flashback gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal \
-  blueman evolution-data-server network-manager-gnome network-manager-pptp-gnome xscreensaver gnome-screensaver light-locker
-
-# Clean all old kernels
-sudo apt install byobu
-sudo purge-old-kernels --keep 1
-sudo apt purge --auto-remove byobu
-
-# Remove unneeded packages and clean cache
-sudo apt autoremove
-sudo apt-get clean
+echo "Please restart and then run ./CleanUnnecessarySoftware.sh!"
 
 # Settings: Mousepad should have View -> Color Scheme set
