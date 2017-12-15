@@ -1,14 +1,16 @@
 #!/bin/bash
 # DM: Remove unnecessary software from VDIs
 
-# Remove rsyslog, already have journald; snapd is for servers; don't need two browsers
-# Vim is confusing and there is nano already, unity and gnome-flashback no longer needed
-# Also remove gnome utilities with Xfce equivalents and games
+# DM: Remove rsyslog, already have journald; snapd is for servers
 sudo systemctl disable rsyslog snapd
-sudo systemctl stop rsyslog syslog.socket snapd snapd.service
-sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound \
-  rsyslog snapd chromium-browser vim vim-common gnome-user-guide unity gedit nautilus aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell simple-scan eog usb-creator-common gnome-system-monitor gnome-terminal \
-  blueman evolution-data-server network-manager-gnome network-manager-pptp-gnome xscreensaver gnome-screensaver light-locker
+sudo systemctl stop rsyslog syslog.socket snapd snapd.socket
+
+# DM: Remove extra browsers, text editors, games, scanning, large docs
+sudo apt purge --auto-remove rsyslog snapd chromium-browser thunderbird vim vim-common gnome-user-guide libreoffice-help-en-gb libreoffice-help-en-us aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell cheese simple-scan gnome-screensaver 
+# DM: If using Xfce, we do not use indicators, can remove
+#sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound
+# DM: If using Xfce, remove GNOME utilities that duplicate Xfce ones
+#sudo apt purge --auto-remove unity gedit nautilus eog gnome-system-monitor gnome-terminal evolution-data-server network-manager-gnome network-manager-pptp-gnome light-locker xscreensaver blueman
 
 # Clean all old kernels
 sudo apt install byobu
