@@ -1,4 +1,4 @@
-[com/canonical/indicator/session]
+[apps/indicator-session]
 suppress-shutdown-menuitem=true
 
 [org/gnome/desktop/wm/preferences]
