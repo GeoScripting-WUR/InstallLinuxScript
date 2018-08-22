@@ -69,7 +69,7 @@ rm rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
 popd
 
 # Install requirements for packages not part of the CRAN distribution
-sudo apt-get install libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
+sudo apt install libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
 # Source-install "raster", "googleVis", "lubridate", "leaflet".
 # Make sure to use a directory common to RStudio and RKWard: RKWard settings
 # ~/R/x86_64-pc-linux-gnu-library/3.2
@@ -80,7 +80,7 @@ sudo apt install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-
 # DM: NOTE: Check if the key changes in 2018!
 #sudo add-apt-repository http://qgis.org/debian
 #sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
-#sudo apt-get update && sudo apt-get install qgis python-qgis  
+#sudo apt update && sudo apt install qgis python-qgis  
 
 # Miniconda: this should be done by the students themselves!
 #MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
@@ -93,14 +93,14 @@ sudo apt install r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-
 # PostGIS
 sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main"
 sudo apt-key adv --keyserver http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc --recv-keys ACCC4CF8
-sudo apt-get update
-sudo apt-get install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2-scripts postgresql-server-dev-9.5 libpq-dev
+sudo apt update
+sudo apt install postgresql-9.5-postgis-2.2 pgadmin3 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2-scripts postgresql-server-dev-9.5 libpq-dev
 # DM: Create a user and a database with these credentials
 PGUSER="geoscripting"
-PGPASS="geoscripting"
+export PGPASSWORD="geoscripting"
 PGDB="geoscripting"
 sudo -u postgres psql -c "CREATE ROLE ${PGUSER} WITH LOGIN CREATEDB"
-sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASS}'"
+sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 # DM: New tables can be added with:
