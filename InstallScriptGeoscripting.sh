@@ -7,6 +7,7 @@
 sudo sed -i "s/#KeyboardLayoutSync=FALSE/KeyboardLayoutSync=FALSE/" /etc/vmware/viewagent-custom.conf
 # DM: Set to use GNOME Flashback
 sudo sed -i "s/#UseGnomeFlashback=TRUE/UseGnomeFlashback=TRUE/" /etc/vmware/viewagent-custom.conf
+echo "SSODesktopType=UseGnomeFlashback" >> /etc/vmware/viewagent-custom.conf
 # DM: Set sudo timeout to an hour
 sudo sed -i "s/Defaults\tenv_reset/Defaults\tenv_reset,timestamp_timeout=60/" /etc/sudoers
 # DM: Disable prompt to upgrade to 18.04, that would be disastrous for current VMWare version
