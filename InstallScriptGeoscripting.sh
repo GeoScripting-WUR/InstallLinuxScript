@@ -56,12 +56,12 @@ sudo mkdir /usr/local/share/applications/
 sudo cp git-gui.desktop /usr/local/share/applications/
 
 # DM: Install R from the CRAN repository and RKWard
-sudo add-apt-repository "deb http://cran-mirror.cs.uu.nl/bin/linux/ubuntu xenial/"
+sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial/"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt update && sudo apt install r-base r-base-dev rkward
 
 # RStudio installation
-RSTUDIO_VERSION="1.1.383"
+RSTUDIO_VERSION="1.1.456"
 pushd /tmp
 wget https://download1.rstudio.org/rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
 sudo gdebi -n rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
