@@ -46,7 +46,7 @@ sudo apt upgrade
 
 # DS: Install software
 sudo apt install -y sshfs mesa-utils manpages firefox gdebi-core curl
-sudo apt install -y spatialite-gui spatialite-bin gdal-bin git-gui qgis python-qgis
+sudo apt install -y spyder spatialite-gui spatialite-bin gdal-bin git-gui qgis python-qgis
 
 # DS: Install Grass and hold version to 7.0.3 
 sudo apt install -y grass=7.0.3-1build1 grass-core=7.0.3-1build1 grass-doc=7.0.3-1build1 grass-gui=7.0.3-1build1
