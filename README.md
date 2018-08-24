@@ -15,4 +15,6 @@ There are some steps through this process:
 9. IT Servicedesk copies default Geoscripting-Ubuntu image of Ubuntu VDI and shares it to all students and staff
 
 This script has been made for Geo-scripting course in 2017 by Dainius Masiliunas and David Swinkels. 
-It should be updated every year to have correct versions and latest software.
+It should be updated every year to have correct versions and latest software. 
+The installation process might change over the years and can still be improved :)
+Feel free to change installation script, but only install stable versions from trusted repositories! 
