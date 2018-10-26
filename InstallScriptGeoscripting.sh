@@ -79,6 +79,14 @@ sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 
+# Nbgrader
+# User needs to install nbgrader from conda-forge channel via conda
+sudo mkdir -p /srv/nbgrader/exchange
+sudo chmod ugo+rw /srv/nbgrader/exchange
+sudo mkdir -p /etc/jupyter
+sudo echo 'c = get_config()' >> /etc/jupyter/nbgrader_config.py
+sudo echo 'c.Exchange.course_id = "geoscripting"' >> /etc/jupyter/nbgrader_config.py
+
 echo "Please restart and then run ./CleanUnnecessarySoftware.sh!"
 
 # Settings: Mousepad should have View -> Color Scheme set
