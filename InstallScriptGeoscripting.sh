@@ -62,8 +62,8 @@ popd
 sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
 # Make sure to use a directory common to RStudio and RKWard: RKWard settings
 # ~/R/x86_64-pc-linux-gnu-library/3.2
-sudo apt install -y r-cran-spatstat r-cran-jsonlite r-cran-zoo r-cran-magrittr r-cran-stringr r-cran-ggplot2
-sudo apt install -y r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-mime r-cran-dichromat r-cran-plyr r-cran-munsell r-cran-labeling r-cran-base64enc r-cran-rcolorbrewer r-cran-scales r-cran-sp
+# sudo apt install -y r-cran-spatstat r-cran-jsonlite r-cran-zoo r-cran-magrittr r-cran-stringr r-cran-ggplot2
+# sudo apt install -y r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-mime r-cran-dichromat r-cran-plyr r-cran-munsell r-cran-labeling r-cran-base64enc r-cran-rcolorbrewer r-cran-scales r-cran-sp
 
 # PostGIS
 sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main"
