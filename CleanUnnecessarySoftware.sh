@@ -6,11 +6,7 @@ sudo systemctl disable rsyslog snapd
 sudo systemctl stop rsyslog syslog.socket snapd snapd.socket
 
 # DM: Remove extra browsers, text editors, terminals, games, scanning, large docs
-sudo apt purge --auto-remove rsyslog snapd chromium-browser thunderbird vim vim-common xterm gnome-user-guide libreoffice-help-en-gb libreoffice-help-en-us aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell cheese simple-scan gnome-screensaver 
-# DM: If using Xfce, we do not use indicators, can remove
-#sudo apt purge --auto-remove indicator-session indicator-applet indicator-applet-complete indicator-application indicator-bluetooth indicator-datetime indicator-keyboard indicator-messages indicator-power indicator-printers indicator-sound
-# DM: If using Xfce, remove GNOME utilities that duplicate Xfce ones
-#sudo apt purge --auto-remove unity gedit nautilus eog gnome-system-monitor gnome-terminal evolution-data-server network-manager-gnome network-manager-pptp-gnome light-locker xscreensaver blueman
+sudo apt purge --auto-remove rsyslog snapd chromium-browser thunderbird vim vim-common xterm gnome-user-guide libreoffice-help-en-gb libreoffice-help-en-us aisleriot gnome-mahjongg gnome-mines gnome-sudoku shotwell cheese simple-scan gnome-screensaver totem rhythmbox
 
 # Clean all old kernels
 sudo apt install byobu
