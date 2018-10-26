@@ -18,17 +18,6 @@ sudo apt update
 sudo apt-mark hold samba
 sudo apt upgrade # Use SSH to upgrade and keep local file for Samba
 
-# DM: Current VMWare Horizon apparently bugs out when Xfce is used. Stay with GNOME Flashback for the time being.
-# DM: Install Xfce
-#sudo apt install xubuntu-desktop
-# DM: Disable shutdown/reboot buttons
-#sudo mkdir /etc/xdg/xfce4/kiosk
-#sudo cp kioskrc /etc/xdg/xfce4/kiosk
-# DM: Set default panel layout
-#sudo cp xfce4-panel.xml /etc/xdg/xdg-xubuntu/xfce4/panel/default.xml
-# DM: Set Xfce as default in LightDM
-#sudo sed -i "s/user-session=ubuntu/user-session=xubuntu/" /etc/lightdm/lightdm.conf
-
 # DM: GNOME Fallback options instead, based on dconf
 sudo cp user /etc/dconf/profile/
 sudo mkdir /etc/dconf/db/geoscripting.d
@@ -71,25 +60,10 @@ popd
 
 # Install requirements for packages not part of the CRAN distribution
 sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
-# Source-install "raster", "googleVis", "lubridate", "leaflet".
 # Make sure to use a directory common to RStudio and RKWard: RKWard settings
 # ~/R/x86_64-pc-linux-gnu-library/3.2
 sudo apt install -y r-cran-spatstat r-cran-jsonlite r-cran-zoo r-cran-magrittr r-cran-stringr r-cran-ggplot2
 sudo apt install -y r-cran-colorspace r-cran-yaml r-cran-digest r-cran-rcpp r-cran-mime r-cran-dichromat r-cran-plyr r-cran-munsell r-cran-labeling r-cran-base64enc r-cran-rcolorbrewer r-cran-scales r-cran-sp
-
-# QGIS
-# DM: NOTE: Check if the key changes in 2018!
-#sudo add-apt-repository http://qgis.org/debian
-#sudo apt-key adv --keyserver http://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
-#sudo apt update && sudo apt install qgis python-qgis  
-
-# Miniconda: this should be done by the students themselves!
-#MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
-#pushd /tmp
-#curl -O https://repo.continuum.io/miniconda/${MINICONDA_VERSION}.sh
-#bash ${MINICONDA_VERSION}.sh
-#rm ${MINICONDA_VERSION}.sh
-#popd
 
 # PostGIS
 sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt xenial-pgdg main"
@@ -104,8 +78,6 @@ sudo -u postgres psql -c "CREATE ROLE ${PGUSER} WITH LOGIN CREATEDB"
 sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
-# DM: New tables can be added with:
-#psql -h localhost -U ${PGUSER} -d ${PGDB} -f table_creation_statements.sql
 
 echo "Please restart and then run ./CleanUnnecessarySoftware.sh!"
 
