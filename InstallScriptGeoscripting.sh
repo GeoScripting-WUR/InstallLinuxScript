@@ -46,7 +46,7 @@ sudo mkdir /usr/local/share/applications/
 sudo cp git-gui.desktop /usr/local/share/applications/
 
 # DM: Install R from the CRAN repository and RKWard
-sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial/"
+sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial-cran35/"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt update && sudo apt install -y r-base r-base-dev rkward
 
