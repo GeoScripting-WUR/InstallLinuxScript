@@ -28,14 +28,6 @@ sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt update && sudo apt install -y r-base r-base-dev rkward
 
-# RStudio installation
-RSTUDIO_VERSION="1.1.456"
-pushd /tmp
-wget https://download1.rstudio.org/rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
-sudo gdebi -n rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
-rm rstudio-xenial-${RSTUDIO_VERSION}-amd64.deb
-popd
-
 # Install requirements for packages not part of the CRAN distribution
 sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
 
@@ -53,10 +45,8 @@ sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 
-# Nbgrader
-# User needs to install nbgrader from conda-forge channel via conda
-sudo mkdir -p /srv/nbgrader/exchange
-sudo chmod ugo+rw /srv/nbgrader/exchange
-sudo mkdir -p /etc/jupyter
-sudo echo 'c = get_config()' >> /etc/jupyter/nbgrader_config.py
-sudo echo 'c.Exchange.course_id = "geoscripting"' >> /etc/jupyter/nbgrader_config.py
+# RStudio and Nbgrader
+pushd ../common
+bash install-rstudio.sh
+sh install-nbgrader.sh
+popd
