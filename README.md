@@ -5,9 +5,9 @@ Another script removes unnecessary software.
 The goal of the script is to prepare a clean Ubuntu OS for all students and staff during Geo-Scripting.
 There are several supported OSs and scenarios, from most to least preferred:
 
-1. VMWare Horizon VDI provided by the IT department. Depending on the OS version, see directories vdi-<codename>.
-2. OSGeo Live. See directories osgeo-<codename>.
-3. Vanilla Ubuntu LiveCD. See directories <codename> (with no prefix).
+1. VMWare Horizon VDI provided by the IT department. Depending on the OS version, see directories `vdi-<codename>`.
+2. OSGeo Live. See directories `osgeo-<codename>`.
+3. Vanilla Ubuntu LiveCD. See directories `<codename>` (with no prefix).
 
 In these directories, the script called `install.sh` is what installs the necessary software.
 Optionally, you can run `free-space.sh` to reclaim some space by removing unnecessary software.
