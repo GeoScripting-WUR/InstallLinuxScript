@@ -43,7 +43,7 @@ sudo apt-mark hold grass grass-gui grass-doc grass-core
 
 # DM: Add Git GUI into the menu
 sudo mkdir /usr/local/share/applications/
-sudo cp git-gui.desktop /usr/local/share/applications/
+sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 
 # DM: Install R from the CRAN repository and RKWard
 sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial-cran35/"
