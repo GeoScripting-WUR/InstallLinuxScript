@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
 pushd /tmp
