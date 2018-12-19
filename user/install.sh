@@ -6,3 +6,6 @@ sh install-conda.sh
 conda create --name geoscripting python=3.6 geopandas spyder owslib pip jupyter
 conda activate geoscripting
 conda install --channel conda-forge folium matplotlib geopy osmnx rasterio geopandas rasterstats owslib pysal descartes
+
+# Install IRKernel for Jupyter
+echo 'install.packages("IRkernel", repos="https://cloud.r-project.org"); IRkernel::installspec()' | R --vanilla
