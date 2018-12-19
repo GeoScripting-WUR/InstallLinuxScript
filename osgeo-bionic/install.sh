@@ -1,3 +1,3 @@
 #!/bin/sh
-sudo apt install rkward libkf5config-bin
+sudo apt install rkward libkf5config-bin gfortran
 bash ../common/install-rstudio.sh
