@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Script to install user-specific tools (i.e. conda)
 bash install-conda.sh
 
