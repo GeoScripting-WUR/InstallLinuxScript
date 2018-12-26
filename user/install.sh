@@ -1,6 +1,7 @@
 #!/bin/bash
 # Script to install user-specific tools (i.e. conda)
 bash install-conda.sh
+export PATH="$HOME/miniconda3/bin:$PATH"
 
 # Make a conda environment with all needed tools
 conda create -y --name geoscripting python=3.6 spyder pip jupyter seaborn "poppler<0.62"
@@ -9,7 +10,7 @@ conda install -y --channel conda-forge folium matplotlib geopy osmnx rasterio ge
   twython nbgrader
 
 # Install IRKernel for Jupyter
-echo 'install.packages("IRkernel", repos="https://cloud.r-project.org"); IRkernel::installspec()' | R --vanilla
+echo 'install.packages("IRkernel", lib=Sys.getenv(R_LIBS_USER), repos="https://cloud.r-project.org"); IRkernel::installspec()' | R --vanilla
 
 # Activate nbgrader
 jupyter nbextension install --sys-prefix --py nbgrader --overwrite
