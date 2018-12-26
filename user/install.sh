@@ -10,7 +10,7 @@ conda install -y --channel conda-forge folium matplotlib geopy osmnx rasterio ge
   twython nbgrader
 
 # Install IRKernel for Jupyter
-echo 'install.packages("IRkernel", lib=Sys.getenv(R_LIBS_USER), repos="https://cloud.r-project.org"); IRkernel::installspec()' | R --vanilla
+echo 'install.packages("IRkernel", lib=Sys.getenv("R_LIBS_USER"), repos="https://cloud.r-project.org"); IRkernel::installspec()' | R --vanilla
 
 # Activate nbgrader
 jupyter nbextension install --sys-prefix --py nbgrader --overwrite
