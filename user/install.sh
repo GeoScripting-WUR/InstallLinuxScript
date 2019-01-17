@@ -8,6 +8,8 @@ conda create -y --name geoscripting python=3.6 spyder pip jupyter seaborn "poppl
 source activate geoscripting
 conda install -y --channel conda-forge folium matplotlib geopy osmnx rasterio geopandas rasterstats owslib pysal descartes \
   twython nbgrader
+# Fix breakage from https://github.com/conda-forge/rasterio-feedstock/issues/98
+conda install -y --channel conda-forge --override-channels "gdal>2.2.4"
 
 # Install IRKernel for Jupyter
 echo 'UserLib=Sys.getenv("R_LIBS_USER"); dir.create(UserLib, recursive=TRUE); install.packages("IRkernel", lib=UserLib, repos="https://cloud.r-project.org"); library(IRkernel, lib=UserLib); IRkernel::installspec()' | R --vanilla
