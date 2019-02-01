@@ -9,7 +9,7 @@ sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
 
 # DM: Update
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
 # DS: Install software
 sudo apt install -y sshfs mesa-utils manpages firefox gdebi-core curl
@@ -21,7 +21,7 @@ sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 
 # DS: Install Grass and hold version to 7.0.3 
 sudo apt install -y grass=7.0.3-1build1 grass-core=7.0.3-1build1 grass-doc=7.0.3-1build1 grass-gui=7.0.3-1build1
-sudo apt-mark hold grass grass-gui grass-doc grass-core
+#sudo apt-mark hold grass grass-gui grass-doc grass-core
 
 # DM: Install R from the CRAN repository and RKWard
 sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial-cran35/"
