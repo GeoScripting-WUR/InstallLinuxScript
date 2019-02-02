@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Script for installing necessary software on an Ubuntu 16.04 VM
 # Common part for all Xenial-based OSs, but not OSGeo Live
 
