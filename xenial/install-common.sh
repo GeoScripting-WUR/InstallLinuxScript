@@ -20,13 +20,15 @@ sudo mkdir /usr/local/share/applications/
 sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 
 # DS: Install Grass and hold version to 7.0.3 
-sudo apt install -y grass=7.0.3-1build1 grass-core=7.0.3-1build1 grass-doc=7.0.3-1build1 grass-gui=7.0.3-1build1
+#sudo apt install -y grass=7.0.3-1build1 grass-core=7.0.3-1build1 grass-doc=7.0.3-1build1 grass-gui=7.0.3-1build1
 #sudo apt-mark hold grass grass-gui grass-doc grass-core
 
 # DM: Install R from the CRAN repository and RKWard
 sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial-cran35/"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-sudo apt update && sudo apt install -y r-base r-base-dev rkward
+# DM: RKWard also depends on some KDE libraries, not sure which ones, but it works if you add `dolphin breeze-icon-theme oxygen-icon-theme`
+# DM: Might also need qt5ct and QT_QPA_PLATFORMTHEME=qt5ct and gnome-icon-theme
+sudo apt update && sudo apt install -y r-base r-base-dev rkward oxygen-icon-theme
 
 # Install requirements for packages not part of the CRAN distribution
 sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
