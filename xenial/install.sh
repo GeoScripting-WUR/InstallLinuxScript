@@ -2,4 +2,4 @@
 # LiveCD-specific software
 sudo apt-add-repository universe
 
-sh install-common.sh
+bash install-common.sh
