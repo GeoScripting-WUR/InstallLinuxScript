@@ -1,0 +1,11 @@
+[apps/indicator-session]
+suppress-shutdown-menuitem=true
+
+[org/gnome/desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
+
+[org/gnome/desktop/screensaver]
+lock-enabled=false
+
+[org/gnome/desktop/lockdown]
+disable-lock-screen=true

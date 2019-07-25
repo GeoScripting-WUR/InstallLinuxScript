@@ -4,8 +4,8 @@ Repository stores configurations and bash scripts to install all necessary softw
 The goal of the script is to prepare a clean Ubuntu OS for all students and staff during Geo-Scripting.
 There are several supported OSs and scenarios, from most to least preferred:
 
-1. VMWare Horizon VDI provided by the IT department. Depending on the OS version, see directories `vdi-<codename>`. These are only interesting for staff who prepare a VDI image.
-2. OSGeo Live. See directories `osgeo-<codename>`.
+1. VMWare Horizon VDI provided by the IT department. Depending on the OS version, see directories `<codename>-vdi`. These are only interesting for staff who prepare a VDI image.
+2. OSGeo Live. See directories `<codename>-osgeo`.
 3. Vanilla Ubuntu LiveCD. See directories `<codename>` (with no prefix).
 
 In these directories, the script called `install.sh` is what installs the necessary software system-wide.
