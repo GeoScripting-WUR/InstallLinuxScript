@@ -25,7 +25,7 @@ sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 
 # DM: Install R from the CRAN repository and RKWard
 sudo add-apt-repository "deb http://cloud.r-project.org/bin/linux/ubuntu/ xenial-cran35/"
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 # DM: RKWard also depends on some KDE libraries, not sure which ones, but it works if you add `dolphin breeze-icon-theme oxygen-icon-theme`
 # DM: Might also need qt5ct and QT_QPA_PLATFORMTHEME=qt5ct and gnome-icon-theme
 sudo apt update && sudo apt install -y r-base r-base-dev rkward oxygen-icon-theme
