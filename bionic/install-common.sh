@@ -7,7 +7,7 @@ sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Pa
 sudo sed -i 's/APT::Periodic::Unattended-Upgrade "1";/APT::Periodic::Unattended-Upgrade "0";/' /etc/apt/apt.conf.d/20auto-upgrades
 
 # DM: QGIS 3
-sudo apt-key adv --keyserver https://qgis.org/downloads/qgis-2017.gpg.key --recv-keys CAEB3DC3BDF7FB45
+sudo apt-key adv --keyserver https://qgis.org/downloads/qgis-2019.gpg.key --recv-keys 51F523511C7028C3
 sudo add-apt-repository "https://qgis.org/ubuntu"
 
 # DM: R >3.5
