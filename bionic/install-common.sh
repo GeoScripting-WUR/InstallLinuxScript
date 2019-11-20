@@ -14,6 +14,9 @@ sudo add-apt-repository "https://qgis.org/ubuntu"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/"
 
+# DM: RKWard for CRAN
+sudo add-apt-repository ppa:rkward-devel/rkward-stable-cran
+
 # DM: Update
 sudo apt update
 sudo apt upgrade -y
