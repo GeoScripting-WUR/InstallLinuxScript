@@ -3,11 +3,16 @@
 bash install-conda.sh
 export PATH="$HOME/miniconda3/bin:$PATH"
 
-# Make a conda environment with all needed tools
-conda create -n geoscripting python=3 pip jupyter seaborn pyproj spyder rasterio geopandas kealib matplotlib owslib pysal descartes -y
-source activate geoscripting
-conda install -c conda-forge rasterstats folium geopy osmnx -y
-pip install fiona==1.8.8
+## Make a conda environment with all needed tools
+
+# Manual way
+#conda create -n geoscripting python=3 pip jupyter seaborn pyproj spyder rasterio geopandas kealib matplotlib owslib pysal descartes -y
+#source activate geoscripting
+#conda install -c conda-forge rasterstats folium geopy osmnx -y
+#pip install fiona==1.8.8
+
+# Automatic way
+conda env create -f environment.yml
 
 # Install IRKernel for Jupyter
 echo 'UserLib=Sys.getenv("R_LIBS_USER"); dir.create(UserLib, recursive=TRUE); install.packages("IRkernel", lib=UserLib, repos="https://cloud.r-project.org"); library(IRkernel, lib=UserLib); IRkernel::installspec()' | R --vanilla
