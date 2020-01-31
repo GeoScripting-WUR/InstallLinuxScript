@@ -16,11 +16,11 @@ awk --help > /dev/null || exit 1
 grep --help > /dev/null || exit 1
 stat --help > /dev/null || exit 1
 # Inputs
-if [[ ! -f "$ISOFILE" || file -b --mime-type "$ISOFILE" -ne "application/octet-stream" ]]; then
+if [[ $(file -b --mime-type "$ISOFILE") != "application/octet-stream" ]]; then
     echo "$ISOFILE does not exist or is not an ISO image"
     exit 1
 fi
-if [[ ! -f "$TARGETDEV" || file -b --mime-type "$TARGETDEV" -ne "inode/blockdevice" ]]; then
+if [[ $(file -b --mime-type "$TARGETDEV") != "inode/blockdevice" ]]; then
     echo "$TARGETDEV does not exist or is not a block device"
     exit 1
 fi
