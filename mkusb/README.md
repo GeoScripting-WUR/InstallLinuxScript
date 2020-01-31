@@ -11,7 +11,7 @@ The general outline is given in [http://geoscripting-wur.github.io/system_setup/
 
 All of this except for the last step is implemented in `mkusb.sh`. Run it like:
 ```
-mkusb.sh ubuntu.iso /dev/sdx
+./mkusb.sh ubuntu.iso /dev/sdx
 ```
 It will ask you to confirm and ask for your root password when needed.
 
