@@ -48,5 +48,4 @@ sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 # RStudio and Nbgrader
 pushd ../common
 bash install-rstudio.sh
-sh install-nbgrader.sh
 popd
