@@ -45,7 +45,5 @@ sudo -u postgres psql -c "ALTER ROLE ${PGUSER} WITH PASSWORD '${PGPASSWORD}'"
 psql -h localhost -U ${PGUSER} -d postgres -c "CREATE DATABASE ${PGDB}"
 sudo -u postgres psql -d ${PGDB} -c "CREATE EXTENSION postgis;"
 
-# RStudio and Nbgrader
-pushd ../common
+# RStudio
 bash install-rstudio.sh
-popd
