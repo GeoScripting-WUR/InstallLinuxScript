@@ -43,8 +43,11 @@ sudo sfdisk "$TARGETDEV" < partitions.txt || exit 1
 sudo sync "$TARGETDEV"
 
 # Find our written partitions
+sudo lsblk -nlp --output NAME,PARTLABEL "$TARGETDEV" # Debug
 PARTBLK=$(sudo lsblk -nlp --output NAME,PARTLABEL "$TARGETDEV")
+echo "$PARTBLK" # Debug
 ESPDEV=$(grep ESP <<< $PARTBLK       | awk '{print $1}')
+echo "$ESPDEV" # Debug
 UBUDEV=$(grep Ubuntu <<< $PARTBLK    | awk '{print $1}')
 CRWDEV=$(grep casper-rw <<< $PARTBLK | awk '{print $1}')
 
