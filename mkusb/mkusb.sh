@@ -40,6 +40,8 @@ read
 sudo sfdisk "$TARGETDEV" < partitions.txt || exit 1
 
 # Wait to make sure that the changes have been written
+sudo partprobe "$TARGETDEV"
+echo 1 | sudo tee /sys/block/$(basename ${TARGETDEV})/device/rescan
 sudo sync "$TARGETDEV"
 
 # Find our written partitions
