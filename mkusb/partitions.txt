@@ -1,4 +1,4 @@
 label: gpt
 start=32MiB,   size=550MiB,  name=ESP,       type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
-start=582MiB, size=2150MiB, name=Ubuntu,    type=4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
-start=2732MiB,              name=casper-rw, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4
+start=582MiB, size=2500MiB, name=Ubuntu,    type=4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709
+start=3082MiB,              name=casper-rw, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4
