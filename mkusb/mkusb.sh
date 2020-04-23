@@ -43,15 +43,23 @@ sudo sfdisk "$TARGETDEV" < partitions.txt || exit 1
 sudo partprobe "$TARGETDEV"
 echo 1 | sudo tee /sys/block/$(basename ${TARGETDEV})/device/rescan
 sudo sync "$TARGETDEV"
+# And just to be on the safe side, wait one more second
+sleep 1
 
 # Find our written partitions
-sudo lsblk -nlp --output NAME,PARTLABEL "$TARGETDEV" # Debug
 PARTBLK=$(sudo lsblk -nlp --output NAME,PARTLABEL "$TARGETDEV")
-echo "$PARTBLK" # Debug
 ESPDEV=$(grep ESP <<< $PARTBLK       | awk '{print $1}')
-echo "$ESPDEV" # Debug
+if [[ ${ESPDEV} == "" ]]; then
+  ESPDEV=${TARGETDEV}1
+fi
 UBUDEV=$(grep Ubuntu <<< $PARTBLK    | awk '{print $1}')
+if [[ ${UBUDEV} == "" ]]; then
+  UBUDEV=${TARGETDEV}2
+fi
 CRWDEV=$(grep casper-rw <<< $PARTBLK | awk '{print $1}')
+if [[ ${CRWDEV} == "" ]]; then
+  CRWDEV=${TARGETDEV}3
+fi
 
 ## Make appropriate file systems
 sudo mkfs.vfat -F 32 -n ESP "$ESPDEV" || exit 1
