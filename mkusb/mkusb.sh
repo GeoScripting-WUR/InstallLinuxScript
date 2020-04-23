@@ -38,6 +38,10 @@ read
 ## Partition the USB stick
 # Partition according to the template
 sudo sfdisk "$TARGETDEV" < partitions.txt || exit 1
+
+# Wait to make sure that the changes have been written
+sudo sync "$TARGETDEV"
+
 # Find our written partitions
 PARTBLK=$(sudo lsblk -nlp --output NAME,PARTLABEL "$TARGETDEV")
 ESPDEV=$(grep ESP <<< $PARTBLK       | awk '{print $1}')
