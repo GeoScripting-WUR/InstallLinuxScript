@@ -1,0 +1,62 @@
+---
+# Install software that is useful for servers.
+
+vars:
+    rstudio_version: 1.3.1093
+    rstudio_branch: bionic
+
+tasks:
+- name: Enable SSH through firewall
+    community.general.ufw:
+        rule: limit
+        port: ssh
+        proto: tcp
+
+- name: Enable firewall
+    community.general.ufw:
+        state: enabled
+        
+- name: Install server utils
+    apt:
+        pkgs:
+        - tmux
+        - htop
+        - git
+        - oomd
+        - xrdp
+        - timeshift
+
+- name: Start OOMD
+    service:
+        name: oomd
+        state: started
+        enabled: yes
+
+- name: Enable XRDP through firewall
+    community.general.ufw:
+        rule: allow
+        port: 3389
+        proto: tcp
+
+- name: Start XRDP
+    service:
+        name: xrdp
+        status: started
+        enabled: yes
+
+- name: Install RStudio Server
+    apt:
+        deb: https://download2.rstudio.org/server/{{ rstudio_branch }}/amd64/rstudio-server-{{ rstudio_version }}-amd64.deb
+
+- name: Enable RStudio Server through firewall
+    community.general.ufw:
+        rule: allow
+        port: 8787
+        proto: tcp
+
+- name: Start RStudio Server
+    service:
+        name: rstudio-server
+        state: started
+        enabled: yes
+        
