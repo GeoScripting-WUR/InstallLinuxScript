@@ -6,12 +6,6 @@
   vars:
     rstudio_version: 1.3.1093
     rstudio_branch: bionic
-
-  tasks:
-  - name: Update system
-    apt:
-      update_cache: yes
-      upgrade: yes
   
   - name: Enable SSH through firewall
     community.general.ufw:
