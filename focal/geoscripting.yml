@@ -10,14 +10,9 @@
       update_cache: yes
       upgrade: yes
 
-  - name: Disable automatic updates
-    ansible.posix.patch:
-      src: disable-upgrades.patch
-      dest: /etc/apt/apt.conf.d/20auto-upgrades
-
   - name: Install CLI utilities
     apt:
-      name: gdal-bin
+      name: ['gdal-bin', 'git']
   
   - name: Install R and its package dependencies
     apt:
