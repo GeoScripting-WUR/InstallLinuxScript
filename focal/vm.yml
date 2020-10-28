@@ -38,3 +38,8 @@
     get_url:
       url: https://raw.githubusercontent.com/mmartinortiz/RmPwOffBtn/keeping-shutdown-object/src/extension.js
       dest: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm/extension.js"
+
+  - name: Disable automatic updates
+    ansible.posix.patch:
+      src: disable-upgrades.patch
+      dest: /etc/apt/apt.conf.d/20auto-upgrades
