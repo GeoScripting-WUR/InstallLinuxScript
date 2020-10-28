@@ -1,0 +1,40 @@
+---
+# Install software that is useful for virtual machines/servers.
+- name: Install VM software
+  hosts: all
+  become: yes
+  vars:
+    rstudio_version: 1.3.1093
+    rstudio_branch: bionic
+
+  tasks:
+  - name: Install RStudio Server
+    apt:
+      deb: https://download2.rstudio.org/server/{{ rstudio_branch }}/amd64/rstudio-server-{{ rstudio_version }}-amd64.deb
+
+  - name: Enable RStudio Server through firewall
+    community.general.ufw:
+      rule: allow
+      port: "8787"
+      proto: tcp
+
+  - name: Start RStudio Server
+    service:
+      name: rstudio-server
+      state: started
+      enabled: yes
+
+  - name: Create shutdown disabler directory
+    file:
+      path: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm"
+      state: directory
+
+  - name: Get shutdown disabler metadata
+    get_url:
+      url: https://raw.githubusercontent.com/mmartinortiz/RmPwOffBtn/keeping-shutdown-object/src/metadata.json
+      dest: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm/metadata.json"
+
+  - name: Get shutdown disabler extension
+    get_url:
+      url: https://raw.githubusercontent.com/mmartinortiz/RmPwOffBtn/keeping-shutdown-object/src/extension.js
+      dest: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm/extension.js"
