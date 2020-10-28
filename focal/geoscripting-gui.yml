@@ -11,10 +11,8 @@ tasks:
         pkg:
         - qgis
         - grass
-        - gdal-bin
         - spatialite-gui
         - mesa-utils
-        - curl
         - spatialite-bin
         - git-gui
         - rkward

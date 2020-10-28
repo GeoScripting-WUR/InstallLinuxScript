@@ -8,6 +8,11 @@
     rstudio_branch: bionic
 
   tasks:
+  - name: Update system
+    apt:
+      update_cache: yes
+      upgrade: yes
+  
   - name: Enable SSH through firewall
     community.general.ufw:
       rule: limit
@@ -20,7 +25,7 @@
             
   - name: Install server utils
     apt:
-      name: ['tmux', 'htop', 'git', 'oomd', 'xrdp', 'timeshift', 'smartmontools']
+      name: ['tmux', 'htop', 'git', 'oomd', 'xrdp', 'snapper', 'smartmontools']
       update_cache: yes
 
   - name: Start OOMD
@@ -56,3 +61,18 @@
       name: rstudio-server
       state: started
       enabled: yes
+
+  - name: Create shutdown disabler directory
+    file:
+      path: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm"
+      state: directory
+
+  - name: Get shutdown disabler metadata
+    get_url:
+      url: https://raw.githubusercontent.com/mmartinortiz/RmPwOffBtn/keeping-shutdown-object/src/metadata.json
+      dest: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm/metadata.json"
+
+  - name: Get shutdown disabler extension
+    get_url:
+      url: https://raw.githubusercontent.com/mmartinortiz/RmPwOffBtn/keeping-shutdown-object/src/extension.js
+      dest: "/usr/share/gnome-shell/extensions/RemovePoweroffActionButton@pratap.fastmail.fm/extension.js"
