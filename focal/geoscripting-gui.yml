@@ -1,14 +1,17 @@
 ---
 # Install all the GUI Geoscripting software on Ubuntu-like OSs.
 
-vars:
+- name: Install geoscripting GUI software
+  hosts: all
+  become: yes
+  vars:
     rstudio_version: 1.3.1093
     rstudio_branch: bionic
 
-tasks:
-- name: Install R and its package dependencies
+  tasks:
+  - name: Install GUI tools
     apt:
-        pkg:
+        name:
         - qgis
         - grass
         - spatialite-gui
@@ -18,11 +21,16 @@ tasks:
         - rkward
         - oxygen-icon-theme
 
-- name: Add Git GUI to the menu
+  - name: Make sure local applications path exists
+    file:
+      path: /usr/local/share/applications
+      state: directory
+
+  - name: Add Git GUI to the menu
     copy:
         src: ../common/git-gui.desktop
         dest: /usr/local/share/applications/git-gui.desktop
 
-- name: Install RStudio desktop
+  - name: Install RStudio desktop
     apt:
         deb: https://download1.rstudio.org/desktop/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
