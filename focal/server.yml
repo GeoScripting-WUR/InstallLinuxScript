@@ -20,13 +20,18 @@
             
   - name: Install server utils
     apt:
-      name: ['tmux', 'htop', 'oomd', 'xrdp', 'snapper', 'smartmontools']
+      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools']
       update_cache: yes
 
-  - name: Start OOMD
+  - name: Configure earlyoom
+    copy:
+      src: earlyoom
+      dest: /etc/default/earlyoom
+
+  - name: Start earlyoom
     service:
-      name: oomd
-      state: started
+      name: earlyoom
+      state: restarted
       enabled: yes
 
   - name: Enable XRDP through firewall
