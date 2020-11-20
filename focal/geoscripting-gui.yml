@@ -18,6 +18,7 @@
         - mesa-utils
         - spatialite-bin
         - git-gui
+        - git-cola
         - rkward
         - oxygen-icon-theme
 

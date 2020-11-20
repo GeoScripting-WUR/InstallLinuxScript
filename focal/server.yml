@@ -28,10 +28,21 @@
       src: earlyoom
       dest: /etc/default/earlyoom
 
+  - name: Create extra earlyoom config
+    file:
+      path: /etc/systemd/system/earlyoom.service.d
+      state: directory
+
+  - name: Enable priority for earlyoom
+    copy:
+      src: earlyoom-priority.conf
+      dest: /etc/systemd/system/earlyoom.service.d/earlyoom-priority.conf
+
   - name: Start earlyoom
-    service:
+    systemd:
       name: earlyoom
       state: restarted
+      daemon_reload: yes
       enabled: yes
 
   - name: Enable XRDP through firewall
