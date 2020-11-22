@@ -68,6 +68,11 @@
     shell:
       cmd: dconf update
 
+  - name: Set the geoscripting dconf profile
+    copy:
+      src: 50-geoscripting-dconf.sh
+      dest: /etc/profile.d/50-geoscripting-dconf.sh
+
   - name: Disable automatic updates
     ansible.posix.patch:
       src: disable-upgrades.patch
