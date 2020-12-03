@@ -9,3 +9,6 @@ lock-enabled=false
 
 [org/gnome/desktop/lockdown]
 disable-lock-screen=true
+
+[org/gnome/shell]
+enabled-extensions=['RemovePoweroffActionButton@pratap.fastmail.fm']
