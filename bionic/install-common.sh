@@ -30,7 +30,7 @@ sudo mkdir /usr/local/share/applications/
 sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 
 # DM: Install R and RKWard
-sudo apt install -y r-base r-base-dev rkward oxygen-icon-theme
+sudo apt install -y r-base r-base-dev rkward oxygen-icon-theme kate
 
 # Install requirements for packages not part of the CRAN distribution
 sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
