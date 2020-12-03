@@ -1,2 +1,2 @@
 # Managed by Ansible, do not edit manually
-EARLYOOM_ARGS="-r 0 -m 5 -s 75"
+EARLYOOM_ARGS="-r 0 -m 6 -s 75"
