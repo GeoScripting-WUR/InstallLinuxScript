@@ -3,11 +3,12 @@
 # Common part for all Bionic-based OSs, but not OSGeo Live
 
 # Disable automatic updates, those can break everything
-sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/20auto-upgrades
-sudo sed -i 's/APT::Periodic::Unattended-Upgrade "1";/APT::Periodic::Unattended-Upgrade "0";/' /etc/apt/apt.conf.d/20auto-upgrades
+#sudo sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/20auto-upgrades
+#sudo sed -i 's/APT::Periodic::Unattended-Upgrade "1";/APT::Periodic::Unattended-Upgrade "0";/' /etc/apt/apt.conf.d/20auto-upgrades
+sudo rm /etc/apt/apt.conf.d/50unattended-upgrades
 
 # DM: QGIS 3
-sudo apt-key adv --keyserver https://qgis.org/downloads/qgis-2019.gpg.key --recv-keys 51F523511C7028C3
+sudo apt-key adv --keyserver https://qgis.org/downloads/qgis-2020.gpg.key --recv-keys F7E06F06199EF2F2
 sudo add-apt-repository "https://qgis.org/ubuntu"
 
 # DM: R >3.5
