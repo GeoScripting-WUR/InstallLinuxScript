@@ -23,7 +23,7 @@ sudo apt update
 sudo apt upgrade -y
 
 # DS: Install software
-sudo apt install -y mesa-utils gdebi-core curl spatialite-gui spatialite-bin gdal-bin git-gui git-cola qgis grass
+sudo apt install -y mesa-utils gdebi-core curl spatialite-gui spatialite-bin gdal-bin python-gdal git-gui git-cola qgis grass
 
 # DM: Add Git GUI into the menu
 sudo mkdir /usr/local/share/applications/
