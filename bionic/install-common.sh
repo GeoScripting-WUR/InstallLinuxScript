@@ -33,7 +33,7 @@ sudo cp ../common/git-gui.desktop /usr/local/share/applications/
 sudo apt install -y r-base r-base-dev rkward oxygen-icon-theme kate
 
 # Install requirements for packages not part of the CRAN distribution
-sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev
+sudo apt install -y libgdal-dev libgeos-dev libproj-dev libxml2-dev libcurl4-openssl-dev libssl-dev libudunits2-dev liblwgeom-dev libfontconfig1-dev libcairo2-dev
 
 # PostGIS
 sudo apt install -y postgis pgadmin3 postgresql-contrib postgresql-server-dev-10
