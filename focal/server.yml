@@ -20,7 +20,7 @@
             
   - name: Install server utils
     apt:
-      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools']
+      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools', 'default-jre-headless']
       update_cache: yes
 
   - name: Configure earlyoom
