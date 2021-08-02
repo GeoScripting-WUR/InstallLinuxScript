@@ -16,7 +16,7 @@ awk --help > /dev/null || exit 1
 grep --help > /dev/null || exit 1
 stat --help > /dev/null || exit 1
 # Inputs
-if [[ $(file -b --mime-type "$ISOFILE") != "application/octet-stream" ]]; then
+if [[ $(file -b --mime-type "$ISOFILE") != "application/x-iso9660-image" ]]; then
     echo "$ISOFILE does not exist or is not an ISO image"
     exit 1
 fi
@@ -24,8 +24,8 @@ if [[ $(file -b --mime-type "$TARGETDEV") != "inode/blockdevice" ]]; then
     echo "$TARGETDEV does not exist or is not a block device"
     exit 1
 fi
-if [[ $(stat --printf="%s" "$ISOFILE") -gt 2254438400 ]]; then
-    echo "ISO file too large to fit into the partition to be created. Please adjust partitions.txt accordingly."
+if [[ $(stat --printf="%s" "$ISOFILE") -gt 2936012800 ]]; then
+    echo "ISO file too large to fit into the partition to be created. Please adjust partitions.txt and this script accordingly."
     exit 1
 fi
 # Required root programs
