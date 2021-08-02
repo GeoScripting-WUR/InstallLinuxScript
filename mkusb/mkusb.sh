@@ -16,7 +16,8 @@ awk --help > /dev/null || exit 1
 grep --help > /dev/null || exit 1
 stat --help > /dev/null || exit 1
 # Inputs
-if [[ $(file -b --mime-type "$ISOFILE") != "application/x-iso9660-image" ]]; then
+isomimetype=$(file -b --mime-type "$ISOFILE")
+if [[ $isomimetype != "application/x-iso9660-image" && $isomimetype != "application/octet-stream" ]]; then
     echo "$ISOFILE does not exist or is not an ISO image"
     exit 1
 fi
@@ -36,8 +37,8 @@ echo "Will write $ISOFILE into $TARGETDEV. This will OVERWRITE $TARGETDEV. Make 
 read
 
 ## Partition the USB stick
-# Partition according to the template
-sudo sfdisk "$TARGETDEV" < partitions.txt || exit 1
+# Partition according to the template, wiping if needed
+sudo sfdisk --wipe always "$TARGETDEV" < partitions.txt || exit 1
 
 # Wait to make sure that the changes have been written
 sudo partprobe "$TARGETDEV"
