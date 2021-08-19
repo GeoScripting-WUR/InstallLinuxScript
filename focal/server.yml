@@ -3,9 +3,6 @@
 - name: Install server software
   hosts: all
   become: yes
-  vars:
-    rstudio_version: 1.3.1093
-    rstudio_branch: bionic
   
   tasks:
   - name: Enable SSH through firewall

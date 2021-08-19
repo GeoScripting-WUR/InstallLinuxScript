@@ -4,7 +4,7 @@
   hosts: all
   become: yes
   vars:
-    rstudio_version: 1.3.1093
+    rstudio_version: 1.4.1717
     rstudio_branch: bionic
 
   tasks:
@@ -31,17 +31,22 @@
 
   - name: Get shutdown disabler metadata
     get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/master/metadata.json
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/gnome-shell-3.36/src/metadata.json
       dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/metadata.json"
 
   - name: Get shutdown disabler extension
     get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/master/extension.js
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/gnome-shell-3.36/src/extension.js
       dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/extension.js"
+
+  - name: Get shutdown disabler config info
+    get_url:
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/gnome-shell-3.36/src/prefs.js
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/prefs.js"
 
   - name: Get shutdown disabler settings schema
     get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/master/schemas/org.gnome.shell.extensions.brngout.gschema.xml
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/Bring-Out-Submenu-of-Power-Off-Logout/gnome-shell-3.36/src/schemas/org.gnome.shell.extensions.brngout.gschema.xml
       dest: "/usr/share/glib-2.0/schemas/org.gnome.shell.extensions.brngout.gschema.xml"
 
   - name: Compile glib schemas
