@@ -4,7 +4,7 @@
   hosts: all
   become: yes
   vars:
-    rstudio_version: 1.4.1717
+    rstudio_version: 2021.09.0-351
     rstudio_branch: bionic
 
   tasks:
