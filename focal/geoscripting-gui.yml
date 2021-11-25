@@ -40,3 +40,7 @@
   - name: Install Google Earth
     apt:
         deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+
+  - name: Add Google Earth repo key
+    ansible.builtin.apt_key:
+        id: 78BD65473CB3BD13
