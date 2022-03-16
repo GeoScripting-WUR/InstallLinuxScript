@@ -15,7 +15,7 @@
 
   - name: Print a parameter
     ansible.builtin.debug:
-      msg: The parameter value is: "{{ test_dainius_param }}"
+      msg: "The parameter value is: {{ test_dainius_param }}"
     when: test_dainius_param is defined
 
   - name: Print a parameter
