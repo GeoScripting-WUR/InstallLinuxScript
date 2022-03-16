@@ -22,3 +22,13 @@
     ansible.builtin.debug:
       msg: The parameter value is blank!
     when: test_dainius_param is undefined
+    
+  - name: Print a secret
+    ansible.builtin.debug:
+      msg: "The secret value is: {{ B_secret }}"
+    when: B_secret is defined
+
+  - name: Print a secret
+    ansible.builtin.debug:
+      msg: The secret value is blank!
+    when: B_secret is undefined
