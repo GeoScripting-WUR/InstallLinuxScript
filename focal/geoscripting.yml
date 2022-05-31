@@ -29,19 +29,19 @@
 
   - name: Add geoscripting user to postgresql
     become_user: postgres
-    community.general.postgresql_user:
+    community.postgresql.postgresql_user:
       name: geoscripting
       password: geoscripting
       role_attr_flags: CREATEDB,NOSUPERUSER
 
   - name: Add new postgresql DB
     become_user: postgres
-    community.general.postgresql_db:
+    community.postgresql.postgresql_db:
       name: geoscripting
 
   - name: Enable PostGIS
     become_user: postgres
-    community.general.postgresql_ext:
+    community.postgresql.postgresql_ext:
       name: postgis
       db: geoscripting
 

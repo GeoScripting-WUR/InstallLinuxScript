@@ -6,18 +6,18 @@
   
   tasks:
   - name: Enable SSH through firewall
-    community.general.ufw:
+    ufw:
       rule: limit
       port: ssh
       proto: tcp
 
   - name: Enable firewall
-    community.general.ufw:
+    ufw:
       state: enabled
             
   - name: Install server utils
     apt:
-      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools', 'default-jre-headless']
+      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools', 'default-jre-headless', 'openssh-server']
       update_cache: yes
 
   - name: Configure earlyoom
@@ -52,7 +52,7 @@
      
 
   - name: Enable XRDP through firewall
-    community.general.ufw:
+    ufw:
       rule: allow
       port: "3389"
       proto: tcp

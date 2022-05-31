@@ -9,6 +9,10 @@
     rstudio_branch: bionic
 
   tasks:
+  - name: Gather package facts
+    package_facts:
+        manager: apt
+  
   - name: Install GUI tools
     apt:
         name:
@@ -40,7 +44,10 @@
   - name: Install Google Earth
     apt:
         deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+    when: '"google-earth-pro-stable" not in ansible_facts.packages'
 
   - name: Add Google Earth repo key
     ansible.builtin.apt_key:
         id: 78BD65473CB3BD13
+        url: https://dl.google.com/linux/linux_signing_key.pub
+ 
