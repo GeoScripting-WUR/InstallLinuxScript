@@ -1,6 +1,7 @@
 ---
 # Install ansible-galaxy via Ansible.
 - name: Install Ansible Galaxy
+  hosts: localhost
   become: yes
 
   tasks:
