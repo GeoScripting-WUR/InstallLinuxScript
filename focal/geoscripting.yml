@@ -1,7 +1,6 @@
 ---
 # Install all the CLI Geoscripting software on Ubuntu-like OSs.
 - name: Install geoscripting CLI software
-  hosts: all
   become: yes
 
   tasks:
