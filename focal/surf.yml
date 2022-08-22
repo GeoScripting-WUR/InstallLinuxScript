@@ -1,0 +1,21 @@
+---
+# Workarounds for the SURF Research Cloud VMs. You should use this in addition to "vm.yml".
+- name: Work around SURF Research Cloud issues
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: Remove GRUB
+    apt:
+      name: grub-efi
+      state: absent
+      purge: yes
+      force: yes
+
+  - name: Reinstall GRUB again
+    apt:
+      name: grub-efi
+      autoremove: yes
+
+  - name: Update GRUB
+    command: update-grub
