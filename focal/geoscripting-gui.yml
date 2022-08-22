@@ -48,6 +48,5 @@
 
   - name: Add Google Earth repo key
     ansible.builtin.apt_key:
-        id: 78BD65473CB3BD13
+        id: EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796
         url: https://dl.google.com/linux/linux_signing_key.pub
- 
