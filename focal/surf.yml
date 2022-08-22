@@ -5,17 +5,17 @@
   become: yes
 
   tasks:
-  - name: Remove GRUB
-    apt:
-      name: grub-efi
-      state: absent
-      purge: yes
-      force: yes
-
-  - name: Reinstall GRUB again
-    apt:
-      name: grub-efi
-      autoremove: yes
-
+#  - name: Remove GRUB
+#    apt:
+#      name: grub-efi
+#      state: absent
+#      purge: yes
+#      force: yes
+#
+#  - name: Reinstall GRUB again
+#    apt:
+#      name: grub-efi
+#      autoremove: yes
+#
   - name: Update GRUB
-    command: update-grub
+    command: grub-install --target=x86_64-efi /boot/efi
