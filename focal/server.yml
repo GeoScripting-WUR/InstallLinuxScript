@@ -1,7 +1,7 @@
 ---
 # Install software that is useful for servers.
 - name: Install server software
-  hosts: all
+  hosts: localhost
   become: yes
   
   tasks:

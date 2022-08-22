@@ -1,7 +1,7 @@
 ---
 # Install software that is useful for virtual machines/servers.
 - name: Install VM software
-  hosts: all
+  hosts: localhost
   become: yes
   vars:
     rstudio_version: 2021.09.0-351

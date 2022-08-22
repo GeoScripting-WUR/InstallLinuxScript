@@ -2,7 +2,7 @@
 # Install all the GUI Geoscripting software on Ubuntu-like OSs.
 
 - name: Install geoscripting GUI software
-  hosts: all
+  hosts: localhost
   become: yes
   vars:
     rstudio_version: 2021.09.0-351
