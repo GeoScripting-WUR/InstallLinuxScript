@@ -1,0 +1,11 @@
+---
+# Install GNOME, in case you did not choose it during the install or if you use minimal install media/VM without GNOME
+
+- name: Install GNOME
+  hosts: localhost
+  become: yes
+
+  - name: Install GNOME packages
+    apt:
+        name:
+        - gnome-core
