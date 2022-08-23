@@ -5,10 +5,10 @@
   become: yes
 
   tasks:
-#  - name: Update system
-#    apt:
-#      update_cache: yes
-#      upgrade: yes
+  - name: Update system
+    apt:
+      update_cache: yes
+      upgrade: yes
 
   - name: Install CLI utilities
     apt:
