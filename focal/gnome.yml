@@ -5,6 +5,7 @@
   hosts: localhost
   become: yes
 
+  tasks:
   - name: Install GNOME packages
     apt:
         name:
