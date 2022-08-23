@@ -1,0 +1,3 @@
+grub-pc grub-pc/install_devices string  /dev/disk/by-label/UEFI
+grub-common     grub-efi/install_devices        multiselect     /dev/disk/by-label/UEFI
+grub-pc grub-efi/install_devices        multiselect     /dev/disk/by-label/UEFI

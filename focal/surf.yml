@@ -5,17 +5,16 @@
   become: yes
 
   tasks:
-#  - name: Remove GRUB
-#    apt:
-#      name: grub-efi
-#      state: absent
-#      purge: yes
-#      force: yes
-#
-#  - name: Reinstall GRUB again
-#    apt:
-#      name: grub-efi
-#      autoremove: yes
-#
-  - name: Update GRUB
-    command: grub-install --target=x86_64-efi /boot/efi
+  - name: Install debconf tools
+    apt:
+      name: debconf-utils
+  - name: Add new GRUB config
+    copy:
+      src: surf-grub-debconf.txt
+      dest: surf-grub-debconf.txt
+  - name: Update GRUB debconfig
+    command: debconf-set-selections < surf-grub-debconf.txt
+  - name: Clean up
+    file:
+      path: surf-grub-debconf.txt
+      state: absent
