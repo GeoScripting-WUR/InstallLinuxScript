@@ -1,0 +1,13 @@
+---
+# Remove XFCE - this is mostly for SURF Research cloud
+
+- name: Remove XFCE
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: Remove XFCE packages
+    apt:
+        name: xfce4-session
+        state: absent
+        autoremove: yes
