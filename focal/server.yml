@@ -1,7 +1,7 @@
 ---
 # Install software that is useful for servers.
 - name: Install server software
-  hosts: localhost
+  hosts: "{{ host | default('localhost') }}"
   become: yes
   
   tasks:

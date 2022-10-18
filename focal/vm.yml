@@ -1,7 +1,7 @@
 ---
 # Install software that is useful for virtual machines/servers.
 - name: Install VM software
-  hosts: localhost
+  hosts: "{{ host | default('localhost') }}"
   become: yes
   vars:
     rstudio_version: 2022.07.2-576
