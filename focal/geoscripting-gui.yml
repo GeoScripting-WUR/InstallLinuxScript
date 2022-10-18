@@ -5,7 +5,7 @@
   hosts: localhost
   become: yes
   vars:
-    rstudio_version: 2021.09.0-351
+    rstudio_version: 2022.07.2-576
     rstudio_branch: bionic
 
   tasks:
