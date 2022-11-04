@@ -1,10 +1,10 @@
 #!/bin/bash
 
-MINICONDA_VERSION="Miniconda3-latest-Linux-x86_64"
+MINICONDA_VERSION="Mambaforge-Linux-x86_64"
 pushd /tmp
-wget https://repo.continuum.io/miniconda/${MINICONDA_VERSION}.sh
-## Unattended install, will put into ~/miniconda3
-bash ${MINICONDA_VERSION}.sh -b -p $HOME/miniconda3
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+## Unattended install, will put into ~/mamba
+bash ${MINICONDA_VERSION}.sh -b -p $HOME/mamba
 rm ${MINICONDA_VERSION}.sh
 popd
-echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="$HOME/mamba/bin:$PATH"' >> ~/.bashrc
