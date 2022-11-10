@@ -10,6 +10,8 @@ export PATH="$HOME/mamba/bin:$PATH"
 #source activate geoscripting
 source activate base
 
+mamba install -y jupyter
+
 # Install IRKernel for Jupyter
 echo 'UserLib=Sys.getenv("R_LIBS_USER"); dir.create(UserLib, recursive=TRUE); try(install.packages("IRkernel", lib=UserLib, repos="https://cloud.r-project.org")); library(IRkernel, lib=UserLib); IRkernel::installspec()' | R --vanilla
 
