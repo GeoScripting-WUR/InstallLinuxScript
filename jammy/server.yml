@@ -1,0 +1,64 @@
+---
+# Install software that is useful for servers.
+- name: Install server software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+  
+  tasks:
+  - name: Enable SSH through firewall
+    ufw:
+      rule: limit
+      port: ssh
+      proto: tcp
+
+  - name: Enable firewall
+    ufw:
+      state: enabled
+            
+  - name: Install server utils
+    apt:
+      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools', 'default-jre-headless', 'openssh-server']
+      update_cache: yes
+
+  - name: Configure earlyoom
+    copy:
+      src: earlyoom
+      dest: /etc/default/earlyoom
+
+  - name: Create extra earlyoom config
+    file:
+      path: /etc/systemd/system/earlyoom.service.d
+      state: directory
+
+  - name: Enable priority for earlyoom
+    copy:
+      src: earlyoom-priority.conf
+      dest: /etc/systemd/system/earlyoom.service.d/earlyoom-priority.conf
+
+  - name: Start earlyoom
+    systemd:
+      name: earlyoom
+      state: restarted
+      daemon_reload: yes
+      enabled: yes
+
+  - name: Disable authentication boxes when connecting via RDP
+    copy:
+#      src: 45-dismiss-color-auth-requests.pkla
+#      dest: /etc/polkit-1/localauthority/50-local.d/45-dismiss-color-auth-requests.pkla
+# Doesn't seem to work, i.e. there are boxes that pop up if the screen is locked
+       content: ""
+       dest: /usr/share/polkit-1/actions/org.freedesktop.color.policy
+     
+
+  - name: Enable XRDP through firewall
+    ufw:
+      rule: allow
+      port: "3389"
+      proto: tcp
+
+  - name: Start XRDP
+    service:
+      name: xrdp
+      state: started
+      enabled: yes

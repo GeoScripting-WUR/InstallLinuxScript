@@ -1,0 +1,52 @@
+---
+# Install all the GUI Geoscripting software on Ubuntu-like OSs.
+
+- name: Install geoscripting GUI software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+  vars:
+    rstudio_version: 2022.12.0-353
+    rstudio_branch: jammy
+
+  tasks:
+  - name: Gather package facts
+    package_facts:
+        manager: apt
+
+  - name: Install GUI tools
+    apt:
+        name:
+        - qgis
+        - grass
+        - saga
+        - spatialite-gui
+        - mesa-utils
+        - spatialite-bin
+        - git-gui
+        - git-cola
+        - rkward
+        - oxygen-icon-theme
+
+  - name: Make sure local applications path exists
+    file:
+      path: /usr/local/share/applications
+      state: directory
+
+  - name: Add Git GUI to the menu
+    copy:
+        src: ../common/git-gui.desktop
+        dest: /usr/local/share/applications/git-gui.desktop
+
+  - name: Install RStudio desktop
+    apt:
+        deb: https://download1.rstudio.org/electron/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
+
+  - name: Install Google Earth
+    apt:
+        deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+    when: '"google-earth-pro-stable" not in ansible_facts.packages'
+
+  - name: Add Google Earth repo key
+    ansible.builtin.apt_key:
+        id: 4EB27DB2A3B88B8B
+        url: https://dl.google.com/linux/linux_signing_key.pub

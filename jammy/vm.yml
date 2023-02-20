@@ -1,0 +1,84 @@
+---
+# Install software that is useful for virtual machines/servers.
+- name: Install VM software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+  vars:
+    rstudio_version: 2022.12.0-353
+    rstudio_branch: jammy
+
+  tasks:
+  - name: Install RStudio Server
+    apt:
+      deb: https://download2.rstudio.org/server/{{ rstudio_branch }}/amd64/rstudio-server-{{ rstudio_version }}-amd64.deb
+
+  - name: Enable RStudio Server through firewall
+    ufw:
+      rule: allow
+      port: "8787"
+      proto: tcp
+
+  - name: Start RStudio Server
+    service:
+      name: rstudio-server
+      state: started
+      enabled: yes
+
+  - name: Create shutdown disabler directory
+    file:
+      path: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm"
+      state: directory
+
+  - name: Get shutdown disabler metadata
+    get_url:
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/metadata.json
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/metadata.json"
+
+  - name: Get shutdown disabler extension
+    get_url:
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/extension.js
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/extension.js"
+
+  - name: Get shutdown disabler config info
+    get_url:
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/prefs.js
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/prefs.js"
+
+  - name: Get shutdown disabler settings schema
+    get_url:
+      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/schemas/org.gnome.shell.extensions.brngout.gschema.xml
+      dest: "/usr/share/glib-2.0/schemas/org.gnome.shell.extensions.brngout.gschema.xml"
+
+  - name: Compile glib schemas
+    shell:
+      chdir: /usr/share/glib-2.0/schemas
+      cmd: glib-compile-schemas .
+
+  - name: Create dconf profile
+    copy:
+      src: geoscripting
+      dest: /etc/dconf/profile/geoscripting
+
+  - name: Create dconf db directory
+    file:
+      path: /etc/dconf/db/geoscripting.d
+      state: directory
+
+  - name: Set shutdown button to disabled
+    copy:
+      src: 50-disable-shutdown
+      dest: /etc/dconf/db/geoscripting.d/50-disable-shutdown
+
+  - name: Enable dconf changes
+    shell:
+      cmd: dconf update
+
+  - name: Set the geoscripting dconf profile
+    copy:
+      src: 50-geoscripting-dconf.sh
+      dest: /etc/profile.d/50-geoscripting-dconf.sh
+
+  - name: Disable automatic updates
+    patch:
+      src: disable-upgrades.patch
+      dest: /etc/apt/apt.conf.d/20auto-upgrades
