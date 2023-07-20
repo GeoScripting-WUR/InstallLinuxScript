@@ -42,13 +42,11 @@
       daemon_reload: yes
       enabled: yes
 
-  - name: Disable authentication boxes when connecting via RDP
-    copy:
-#      src: 45-dismiss-color-auth-requests.pkla
-#      dest: /etc/polkit-1/localauthority/50-local.d/45-dismiss-color-auth-requests.pkla
-# Doesn't seem to work, i.e. there are boxes that pop up if the screen is locked
-       content: ""
-       dest: /usr/share/polkit-1/actions/org.freedesktop.color.policy
+# This should be already fixed in jammy
+#  - name: Disable authentication boxes when connecting via RDP
+#    copy:
+#       content: ""
+#       dest: /usr/share/polkit-1/actions/org.freedesktop.color.policy
      
 
   - name: Enable XRDP through firewall
