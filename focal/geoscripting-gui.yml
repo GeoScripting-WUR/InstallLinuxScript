@@ -5,13 +5,13 @@
   hosts: "{{ host | default('localhost') }}"
   become: yes
   vars:
-    rstudio_version: 2022.07.2-576
-    rstudio_branch: bionic
+    rstudio_version: 2023.06.1-524
+    rstudio_branch: jammy
 
   tasks:
-  - name: Gather package facts
-    package_facts:
-        manager: apt
+#  - name: Gather package facts
+#    package_facts:
+#        manager: apt
   
   - name: Install GUI tools
     apt:
@@ -37,16 +37,34 @@
         src: ../common/git-gui.desktop
         dest: /usr/local/share/applications/git-gui.desktop
 
+  # This is needed due to a bug in RKWard 0.7.2 (https://bugs.launchpad.net/ubuntu/+source/rkward/+bug/2011617)
+  - name: Add RKWard PPA
+    apt_repository:
+      repo: 'ppa:rkward-devel/rkward-stable'
+      state: present
+
   - name: Install RStudio desktop
     apt:
-        deb: https://download1.rstudio.org/desktop/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
+        deb: https://download1.rstudio.org/electron/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
 
-  - name: Install Google Earth
+#  - name: Install Google Earth
+#    apt:
+#        deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+#    when: '"google-earth-pro-stable" not in ansible_facts.packages'
+
+  - name: Add google APT repository
+    ansible.builtin.deb822_repository:
+      name: google
+      types: [deb]
+      uris: "http://dl.google.com/linux/earth/deb"
+      signed_by: "https://dl.google.com/linux/linux_signing_key.pub"
+      suites: [stable]
+      components: [main]
+      state: present
+      enabled: yes
+
+  - name: Install RKWard and Google Earth
     apt:
-        deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
-    when: '"google-earth-pro-stable" not in ansible_facts.packages'
-
-  - name: Add Google Earth repo key
-    ansible.builtin.apt_key:
-        id: 4EB27DB2A3B88B8B
-        url: https://dl.google.com/linux/linux_signing_key.pub
+        name:
+        - rkward
+        - google-earth-pro-stable
