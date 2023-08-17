@@ -24,7 +24,6 @@
         - spatialite-bin
         - git-gui
         - git-cola
-        - rkward
         - oxygen-icon-theme
 
   - name: Make sure local applications path exists
@@ -41,12 +40,26 @@
     apt:
         deb: https://download1.rstudio.org/electron/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
 
+  - name: Add Google Earth repo key
+    ansible.builtin.get_url:
+      url: https://dl.google.com/linux/linux_signing_key.pub
+      dest: /etc/apt/trusted.gpg.d/google.asc
+      mode: '0644'
+      force: true
+
+  # This is needed due to a bug in RKWard 0.7.2 (https://bugs.launchpad.net/ubuntu/+source/rkward/+bug/2011617)
+  - name: Add RKWard PPA
+    apt_repository:
+      repo: 'ppa:rkward-devel/rkward-stable'
+      state: present
+
+  - name: Install RKWard tools
+    apt:
+        name: rkward
+
+
   - name: Install Google Earth
     apt:
         deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
     when: '"google-earth-pro-stable" not in ansible_facts.packages'
 
-  - name: Add Google Earth repo key
-    ansible.builtin.apt_key:
-        id: 4EB27DB2A3B88B8B
-        url: https://dl.google.com/linux/linux_signing_key.pub
