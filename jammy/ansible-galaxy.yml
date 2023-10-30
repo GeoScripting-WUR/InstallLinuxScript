@@ -6,5 +6,5 @@
 
   tasks:
   - name: Install necessary collections
-    command: ansible-galaxy collection install community.general community.postgresql
+    command: ansible-galaxy collection install --server="https://old-galaxy.ansible.com" --ignore-certs community.general community.postgresql
 
