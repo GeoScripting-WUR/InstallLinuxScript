@@ -1,0 +1,6 @@
+--- 20auto-upgrades     2020-10-09 17:31:51.758314148 +0200
++++ 20auto-upgrades.new 2020-10-09 17:32:12.502193878 +0200
+@@ -1,2 +1,2 @@
+ APT::Periodic::Update-Package-Lists "1";
+-APT::Periodic::Unattended-Upgrade "1";
++APT::Periodic::Unattended-Upgrade "0";

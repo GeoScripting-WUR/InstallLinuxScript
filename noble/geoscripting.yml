@@ -1,0 +1,46 @@
+---
+# Install all the CLI Geoscripting software on Ubuntu-like OSs.
+- name: Install geoscripting CLI software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+
+  tasks:
+  - name: Update system
+    apt:
+      update_cache: yes
+      upgrade: yes
+
+  - name: Install CLI utilities
+    apt:
+      name: ['gdal-bin', 'git']
+  
+  - name: Install R and its package dependencies
+    apt:
+      name: ['r-base', 'r-base-dev', 'libgdal-dev', 'libgeos-dev', 'libproj-dev', 'libxml2-dev', 'libcurl4-openssl-dev', 'libssl-dev', 'libudunits2-dev', 'python3-gdal']
+
+  - name: Install PostGIS
+    apt:
+      name:
+      - postgis
+      - postgresql-contrib
+      - postgresql-server-dev-14
+      - python3-psycopg2
+
+  - name: Add geoscripting user to postgresql
+    become_user: postgres
+    community.postgresql.postgresql_user:
+      name: geoscripting
+      password: geoscripting
+      role_attr_flags: CREATEDB,NOSUPERUSER
+
+  - name: Add new postgresql DB
+    become_user: postgres
+    community.postgresql.postgresql_db:
+      name: geoscripting
+
+  - name: Enable PostGIS
+    become_user: postgres
+    community.postgresql.postgresql_ext:
+      name: postgis
+      db: geoscripting
+
