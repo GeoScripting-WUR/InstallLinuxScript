@@ -23,7 +23,7 @@
       name:
       - postgis
       - postgresql-contrib
-      - postgresql-server-dev-14
+      - postgresql-server-dev-16
       - python3-psycopg2
 
   - name: Add geoscripting user to postgresql
