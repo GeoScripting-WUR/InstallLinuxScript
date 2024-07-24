@@ -1,0 +1,74 @@
+---
+# Install software/settings specific to local virtual machines (VirtualBox)
+
+- name: Install VirtualBox-specific software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+
+  tasks:
+  - name: Add Firefox PPA
+    apt_repository:
+      repo: 'ppa:mozillateam/ppa'
+      state: present
+      
+  - name: Remove Firefox snap
+    community.general.snap:
+      name: "firefox"
+      state: "absent"
+
+  - name: Disable automatic updates
+    copy:
+      content: 'APT::Periodic::Unattended-Upgrade "0";'
+      dest: /etc/apt/apt.conf.d/99disable-auto-upgrades
+
+  - name: Add r2u repository key
+    get_url:
+      url: https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc
+      dest: /etc/apt/trusted.gpg.d/cranapt_key.asc
+  
+  - name: Add r2u repository
+    apt_repository:
+      repo: deb https://r2u.stat.illinois.edu/ubuntu noble main
+      filename: cranapt
+
+  - name: Add CRAN repository key
+    get_url:
+      url: https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc
+      dest: /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+  
+  - name: Add CRAN repository
+    apt_repository:
+      repo: deb https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/
+      filename: cran_r
+      
+
+  - name: Pin r2u packages
+    copy:
+      src: 99cranapt
+      dest: /etc/apt/preferences.d/99cranapt
+
+  - name: Install software for VirtualBox
+    apt:
+        name:
+        - python3-apt
+        - python3-dbus
+        - python3-gi
+        - perl
+        - gcc
+        - dkms
+        - build-essential
+        - module-assistant
+        - firefox-esr
+        - r-base-core
+#        - r-cran-bspm
+
+# Not sure why this cannot be achieved by the above
+  - name: Install bspm package as root
+    shell: Rscript -e 'install.packages("bspm")'
+
+  - name: Enable r2u by default
+    lineinfile:
+      path: /usr/lib/R/etc/Rprofile.site
+      search_string: 'bspm::enable()'
+      line: "suppressMessages(bspm::enable())"
+
