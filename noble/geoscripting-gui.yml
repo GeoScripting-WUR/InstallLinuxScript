@@ -40,6 +40,11 @@
   - name: Install RStudio desktop
     apt:
         deb: https://download1.rstudio.org/electron/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
+        
+  - name: Fix RStudio sandbox permissions
+    ansible.builtin.file:
+        path: /usr/lib/rstudio/chrome-sandbox
+        mode: '4755'
 
   - name: Add Google Earth repo key
     ansible.builtin.get_url:
