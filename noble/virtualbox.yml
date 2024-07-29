@@ -62,7 +62,7 @@
         - r-base-core
 #        - r-cran-bspm
 
-# Not sure why this cannot be achieved by the above
+# At the moment the package needs to be installed through R to run extra hooks
   - name: Install bspm package as root
     shell: Rscript -e 'install.packages("bspm")'
 
