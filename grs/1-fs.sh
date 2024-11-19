@@ -22,7 +22,7 @@ sudo fdisk /dev/nvme1n1
 sudo mkfs.fat -F 32 -n ESP /dev/nvme0n1p1
 
 # Create btrfs on the new partitions
-# NOTE: This breaks ubiquity in 22.04.1. Workaround: do a single btrfs volume
+# NOTE: This breaks curtin in 24.04 (it demands reformatting). Workaround: do a single btrfs volume
 # and then btrfs dev add && btrfs fi balance start -dconvert=raid1 -mconvert=raid1
 
 sudo mkfs.btrfs -L Ubuntu -d raid1 /dev/nvme0n1p2 /dev/nvme1n1p1
