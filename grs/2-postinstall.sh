@@ -10,4 +10,4 @@ sudo nano /etc/fstab
 # If needed, readd devices and reset raid1 profiles
 
 # Mount /tmp as tmpfs
-echo "tmpfs /tmp tmpfs rw,nosuid,nodev" | sudo tee -a /etc/fstab
+echo "tmpfs /tmp tmpfs rw,nosuid,nodev 0 0" | sudo tee -a /etc/fstab
