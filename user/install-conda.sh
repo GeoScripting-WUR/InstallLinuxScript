@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MINICONDA_VERSION="Miniforge-Linux-x86_64"
+MINICONDA_VERSION="Miniforge3-Linux-x86_64"
 pushd /tmp
 wget https://github.com/conda-forge/miniforge/releases/latest/download/${MINICONDA_VERSION}.sh
 ## Unattended install, will put into ~/mamba
