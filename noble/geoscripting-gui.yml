@@ -40,7 +40,7 @@
   - name: Install RStudio desktop
     apt:
         deb: https://download1.rstudio.org/electron/{{ rstudio_branch }}/amd64/rstudio-{{ rstudio_version }}-amd64.deb
-        
+
   - name: Fix RStudio sandbox permissions
     ansible.builtin.file:
         path: /usr/lib/rstudio/chrome-sandbox
@@ -59,3 +59,20 @@
         deb: https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
     when: '"google-earth-pro-stable" not in ansible_facts.packages'
 
+
+  - name: Add VSCode repo key
+    ansible.builtin.get_url:
+      url: https://packages.microsoft.com/keys/microsoft.asc
+      dest: /etc/apt/trusted.gpg.d/microsoft.asc
+      mode: '0644'
+      force: true
+
+  - name: Add VSCode repository
+    apt_repository:
+      repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+      filename: vscode
+
+  - name: Install VSCode
+    apt:
+        name: code
+        update_cache: true
