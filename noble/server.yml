@@ -42,12 +42,11 @@
       daemon_reload: yes
       enabled: yes
 
-# This should be already fixed in jammy
-#  - name: Disable authentication boxes when connecting via RDP
-#    copy:
-#       content: ""
-#       dest: /usr/share/polkit-1/actions/org.freedesktop.color.policy
-     
+  - name: Allow RDP to read SSL certs
+    user:
+       name: xrdp
+       groups: ssl-cert
+       append: yes
 
   - name: Enable XRDP through firewall
     ufw:
