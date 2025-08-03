@@ -48,6 +48,18 @@
        groups: ssl-cert
        append: yes
 
+  - name: Disable XRDP logging due to xrdp issue 2040
+    lineinfile:
+      line: "SyslogLevel=CORE"
+      search_string: "SyslogLevel="
+      path: /etc/xrdp/xrdp.ini
+
+  - name: Disable XRDP logging due to xrdp issue 2040
+    lineinfile:
+      line: "ConsoleLevel=CORE"
+      search_string: "ConsoleLevel="
+      path: /etc/xrdp/xrdp.ini
+
   - name: Enable XRDP through firewall
     ufw:
       rule: allow
