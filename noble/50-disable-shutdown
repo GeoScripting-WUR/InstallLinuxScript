@@ -1,6 +1,7 @@
 [org/gnome/shell]
 enabled-extensions=['BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm']
 
-[org/gnome/shell/extensions/brngout]
-remove-power-button=true
-remove-suspend-button=true
+[org/gnome/shell/extensions/bring-out-submenu-of-power-off-logout]
+hide-suspend-button=true
+hide-restart-button=true
+hide-power-button=true

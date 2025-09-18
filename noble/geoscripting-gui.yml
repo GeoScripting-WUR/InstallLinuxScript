@@ -9,6 +9,7 @@
     rstudio_branch: "{{ ubuntu_codename | default('jammy') }}"
     arch: "{{ system_arch | default('amd64') }}"
 
+
   tasks:
   - name: Display system information
     debug:
@@ -64,6 +65,7 @@
         deb: "{{ (rstudio_daily_info.content | from_json).products.electron.platforms[rstudio_branch + '-arm64'].link }}"
     when: arch == "arm64"
 
+
   - name: Fix RStudio sandbox permissions
     ansible.builtin.file:
         path: /usr/lib/rstudio/chrome-sandbox
@@ -86,7 +88,6 @@
     debug:
       msg: "Google Earth is not available for ARM64 architecture, skipping installation"
     when: arch == "arm64"
-
 
   - name: Add VSCode repo key
     ansible.builtin.get_url:

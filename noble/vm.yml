@@ -4,7 +4,7 @@
   hosts: "{{ host | default('localhost') }}"
   become: yes
   vars:
-    rstudio_version: 2024.04.2-764
+    rstudio_version: 2025.05.1-513
     rstudio_branch: jammy
 
   tasks:
@@ -29,25 +29,32 @@
       path: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm"
       state: directory
 
-  - name: Get shutdown disabler metadata
-    get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/metadata.json
-      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/metadata.json"
-
   - name: Get shutdown disabler extension
-    get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/extension.js
-      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/extension.js"
+    ansible.builtin.unarchive:
+      src: https://github.com/pratap-panabaka/gse-bring-out-submenu-of-power-off-logout/archive/refs/heads/main.zip
+      dest: /tmp/
+      remote_src: yes
+      creates: /tmp/gse-bring-out-submenu-of-power-off-logout-main/
 
-  - name: Get shutdown disabler config info
-    get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/prefs.js
-      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/prefs.js"
+  - name: Find shutdown disabler files
+    find:
+      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48/"
+      recurse: no
+      patterns: "*.*"
+    register: files_to_copy
 
-  - name: Get shutdown disabler settings schema
-    get_url:
-      url: https://raw.githubusercontent.com/PRATAP-KUMAR/bring-out-submenu-of-power-off-logout/versions%3C43/src/schemas/org.gnome.shell.extensions.brngout.gschema.xml
-      dest: "/usr/share/glib-2.0/schemas/org.gnome.shell.extensions.brngout.gschema.xml"
+  - name: Install shutdown disabler files
+    copy:
+      src: "{{ item.path }}"
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/"
+      remote_src: true
+    with_items: "{{ files_to_copy.files }}"
+
+  - name: Install shutdown disabler schema
+    copy:
+      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48/schemas/"
+      remote_src: true
+      dest: /usr/share/glib-2.0/schemas/
 
   - name: Compile glib schemas
     shell:
@@ -77,6 +84,11 @@
     copy:
       src: 50-geoscripting-dconf.sh
       dest: /etc/profile.d/50-geoscripting-dconf.sh
+
+  - name: Clean up unneeded files
+    file:
+      path: /tmp/gse-bring-out-submenu-of-power-off-logout-main
+      state: absent
 
   - name: Disable automatic updates
     copy:
