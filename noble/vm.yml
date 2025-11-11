@@ -35,7 +35,7 @@
       src: https://github.com/pratap-panabaka/gse-bring-out-submenu-of-power-off-logout/archive/{{ shutdown_disabler_ref }}.zip
       dest: /tmp/
       remote_src: yes
-      creates: /tmp/gse-bring-out-submenu-of-power-off-logout-main/
+      creates: /tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/
 
   - name: Find shutdown disabler files
     find:
@@ -53,7 +53,7 @@
 
   - name: Install shutdown disabler schema
     copy:
-      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48-49/schemas/"
+      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/src/v-45-46-47-48-49/schemas/"
       remote_src: true
       dest: /usr/share/glib-2.0/schemas/
 
