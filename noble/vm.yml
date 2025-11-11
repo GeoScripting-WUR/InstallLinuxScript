@@ -4,8 +4,9 @@
   hosts: "{{ host | default('localhost') }}"
   become: yes
   vars:
-    rstudio_version: 2025.05.1-513
+    rstudio_version: 2025.09.2-418
     rstudio_branch: jammy
+    shutdown_disabler_ref: c16f52bbf84816b999dd198d078d56dc5c28803f
 
   tasks:
   - name: Install RStudio Server
@@ -31,14 +32,14 @@
 
   - name: Get shutdown disabler extension
     ansible.builtin.unarchive:
-      src: https://github.com/pratap-panabaka/gse-bring-out-submenu-of-power-off-logout/archive/refs/heads/main.zip
+      src: https://github.com/pratap-panabaka/gse-bring-out-submenu-of-power-off-logout/archive/{{ shutdown_disabler_ref }}.zip
       dest: /tmp/
       remote_src: yes
       creates: /tmp/gse-bring-out-submenu-of-power-off-logout-main/
 
   - name: Find shutdown disabler files
     find:
-      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48/"
+      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48-49/"
       recurse: no
       patterns: "*.*"
     register: files_to_copy
@@ -52,7 +53,7 @@
 
   - name: Install shutdown disabler schema
     copy:
-      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48/schemas/"
+      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48-49/schemas/"
       remote_src: true
       dest: /usr/share/glib-2.0/schemas/
 
