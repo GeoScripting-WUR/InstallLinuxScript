@@ -16,7 +16,7 @@
   
   - name: Install R and its package dependencies
     apt:
-      name: ['r-base', 'r-base-dev', 'libgdal-dev', 'libgeos-dev', 'libproj-dev', 'libxml2-dev', 'libcurl4-openssl-dev', 'libssl-dev', 'libudunits2-dev', 'python3-gdal']
+      name: ['r-base', 'r-base-dev', 'libgdal-dev', 'libgeos-dev', 'libproj-dev', 'libxml2-dev', 'libcurl4-openssl-dev', 'libssl-dev', 'libudunits2-dev', 'python3-gdal', 'libabsl-dev', 'cmake']
 
   - name: Install PostGIS
     apt:

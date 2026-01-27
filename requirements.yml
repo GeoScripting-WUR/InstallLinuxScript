@@ -1,0 +1,6 @@
+---
+
+collections:
+  # Ansible Galaxy collections required for all versions. Used by SURF Research Cloud.
+  - name: community.general
+  - name: community.postgresql
