@@ -4,7 +4,7 @@
   hosts: "{{ host | default('localhost') }}"
   become: yes
   vars:
-    rstudio_version: 2025.05.1-513
+    rstudio_version: 2026.01.0-392
     rstudio_branch: jammy
 
   tasks:
