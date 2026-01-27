@@ -39,7 +39,7 @@
 
   - name: Find shutdown disabler files
     find:
-      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-main/src/v-45-46-47-48-49/"
+      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/src/v-45-46-47-48-49/"
       recurse: no
       patterns: "*.*"
     register: files_to_copy
