@@ -35,6 +35,7 @@
         - oxygen-icon-theme
         - rkward
         - cmake
+        - ubuntu-desktop-minimal
 
   - name: Make sure local applications path exists
     file:
