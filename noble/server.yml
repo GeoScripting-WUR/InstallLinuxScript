@@ -63,5 +63,5 @@
   - name: Start GNOME Remote Desktop
     service:
       name: gnome-remote-desktop
-      state: started
+      state: restarted
       enabled: yes
