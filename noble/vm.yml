@@ -62,12 +62,17 @@
       chdir: /usr/share/glib-2.0/schemas
       cmd: glib-compile-schemas .
 
-  - name: Create dconf profile
+  - name: Ensure a dconf profile directory
+    file:
+      path: /etc/dconf/profile
+      state: directory
+
+  - name: Create dconf profile for geoscripting
     copy:
       src: geoscripting
       dest: /etc/dconf/profile/geoscripting
 
-  - name: Create dconf db directory
+  - name: Create dconf db directory for geoscripting
     file:
       path: /etc/dconf/db/geoscripting.d
       state: directory
@@ -76,6 +81,26 @@
     copy:
       src: 50-disable-shutdown
       dest: /etc/dconf/db/geoscripting.d/50-disable-shutdown
+
+  - name: Create dconf db directory for GDM
+    file:
+      path: /etc/dconf/db/gdm.d
+      state: directory
+
+  - name: Create dconf profile for gdm
+    copy:
+      content: |
+        user-db:user
+        system-db:gdm
+        file-db:/usr/share/gdm/greeter-dconf-defaults
+      dest: /etc/dconf/profile/gdm
+
+  - name: Disable shutdown buttons in GDM
+    copy:
+      content: |
+        [org/gnome/login-screen]
+        disable-restart-buttons=true
+      dest: /etc/dconf/db/gdm.d/99-site-settings
 
   - name: Enable dconf changes
     shell:
@@ -90,6 +115,11 @@
     file:
       path: /tmp/gse-bring-out-submenu-of-power-off-logout-main
       state: absent
+
+  - name: Restart GDM
+    service:
+      name: gdm
+      state: restarted
 
   - name: Disable automatic updates
     copy:
