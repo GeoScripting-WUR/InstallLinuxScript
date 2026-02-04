@@ -52,9 +52,13 @@
     shell: |
       grdctl --system rdp enable
       grdctl --system rdp set-credentials geoscripting geoscripting
+
+  - name: Generate and install TLS certificate
+    shell: |
       sudo -u gnome-remote-desktop winpr-makecert -silent -rdp -path ~gnome-remote-desktop rdp-tls
       grdctl --system rdp set-tls-key ~gnome-remote-desktop/rdp-tls.key
       grdctl --system rdp set-tls-cert ~gnome-remote-desktop/rdp-tls.crt
+    creates: /var/lib/gnome-remote-desktop/rdp-tls.key
 
   - name: Start GNOME Remote Desktop
     service:
