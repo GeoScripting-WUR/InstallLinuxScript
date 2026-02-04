@@ -17,7 +17,7 @@
             
   - name: Install server utils
     apt:
-      name: ['tmux', 'htop', 'earlyoom', 'xrdp', 'snapper', 'smartmontools', 'default-jre-headless', 'openssh-server']
+      name: ['tmux', 'htop', 'earlyoom', 'gnome-remote-desktop', 'winpr-utils', 'snapper', 'smartmontools', 'default-jre-headless', 'openssh-server']
       update_cache: yes
 
   - name: Configure earlyoom
@@ -42,32 +42,22 @@
       daemon_reload: yes
       enabled: yes
 
-  - name: Allow RDP to read SSL certs
-    user:
-       name: xrdp
-       groups: ssl-cert
-       append: yes
-
-  - name: Disable XRDP logging due to xrdp issue 2040
-    lineinfile:
-      line: "SyslogLevel=CORE"
-      search_string: "SyslogLevel="
-      path: /etc/xrdp/xrdp.ini
-
-  - name: Disable XRDP logging due to xrdp issue 2040
-    lineinfile:
-      line: "ConsoleLevel=CORE"
-      search_string: "ConsoleLevel="
-      path: /etc/xrdp/xrdp.ini
-
-  - name: Enable XRDP through firewall
+  - name: Enable RDP through firewall
     ufw:
       rule: allow
       port: "3389"
       proto: tcp
 
-  - name: Start XRDP
+  - name: Enable RDP in the system
+    shell: |
+      grdctl --system rdp enable
+      grdctl --system rdp set-credentials geoscripting geoscripting
+      sudo -u gnome-remote-desktop winpr-makecert -silent -rdp -path ~gnome-remote-desktop rdp-tls
+      grdctl --system rdp set-tls-key ~gnome-remote-desktop/rdp-tls.key
+      grdctl --system rdp set-tls-cert ~gnome-remote-desktop/rdp-tls.crt
+
+  - name: Start GNOME Remote Desktop
     service:
-      name: xrdp
+      name: gnome-remote-desktop
       state: started
       enabled: yes
