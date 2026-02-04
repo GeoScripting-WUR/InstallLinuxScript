@@ -61,7 +61,7 @@
 
   - name: Install RStudio desktop (ARM64 - daily build)
     apt:
-        deb: "{{ (rstudio_daily_info.content | from_json).products.electron.platforms[rstudio_branch + '-arm64'].link }}"
+        deb: "{{ (rstudio_daily_info.content | from_json).products.electron.platforms[rstudio_branch + '-' + arch].link }}"
     when: arch == "arm64"
 
 
