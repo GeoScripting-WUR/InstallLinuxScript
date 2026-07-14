@@ -92,7 +92,7 @@
   - name: Add Google Earth Pro repository
     apt_repository:
       repo: "deb [arch={{ arch }}] https://dl.google.com/linux/earth/deb stable main"
-      filename: google-earth
+      filename: google-earth-pro
 
   - name: Install Google Earth (AMD64)
     apt:

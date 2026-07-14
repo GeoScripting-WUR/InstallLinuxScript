@@ -31,21 +31,33 @@
     get_url:
       url: https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc
       dest: /etc/apt/trusted.gpg.d/cranapt_key.asc
-  
+
   - name: Add r2u repository
-    apt_repository:
-      repo: deb https://r2u.stat.illinois.edu/ubuntu noble main
-      filename: cranapt
+    deb822_repository:
+      name: cranapt
+      state: present
+      types: [deb]
+      uris: "https://r2u.stat.illinois.edu/ubuntu"
+      suites: [resolute]
+      components: [main]
+      signed_by: /etc/apt/trusted.gpg.d/cranapt_key.asc
+      enabled: yes
 
   - name: Add CRAN repository key
     get_url:
       url: https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc
       dest: /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-  
+
   - name: Add CRAN repository
-    apt_repository:
-      repo: deb https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/
-      filename: cran_r
+    deb822_repository:
+      name: cran_r
+      state: present
+      types: [deb]
+      uris: "https://cloud.r-project.org/bin/linux/ubuntu"
+      suites: [resolute-cran40/]
+      components: [ ]
+      signed_by: /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+      enabled: yes
       
 
   - name: Pin r2u packages
