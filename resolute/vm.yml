@@ -1,0 +1,127 @@
+---
+# Install software that is useful for virtual machines/servers.
+- name: Install VM software
+  hosts: "{{ host | default('localhost') }}"
+  become: yes
+  vars:
+    rstudio_version: 2026.01.0-392
+    rstudio_branch: jammy
+    shutdown_disabler_ref: c16f52bbf84816b999dd198d078d56dc5c28803f
+
+  tasks:
+  - name: Install RStudio Server
+    apt:
+      deb: https://download2.rstudio.org/server/{{ rstudio_branch }}/amd64/rstudio-server-{{ rstudio_version }}-amd64.deb
+
+  - name: Enable RStudio Server through firewall
+    ufw:
+      rule: allow
+      port: "8787"
+      proto: tcp
+
+  - name: Start RStudio Server
+    service:
+      name: rstudio-server
+      state: started
+      enabled: yes
+
+  - name: Create shutdown disabler directory
+    file:
+      path: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm"
+      state: directory
+
+  - name: Get shutdown disabler extension
+    ansible.builtin.unarchive:
+      src: https://github.com/pratap-panabaka/gse-bring-out-submenu-of-power-off-logout/archive/{{ shutdown_disabler_ref }}.zip
+      dest: /tmp/
+      remote_src: yes
+      creates: /tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/
+
+  - name: Find shutdown disabler files
+    find:
+      paths: "/tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/src/v-45-46-47-48-49/"
+      recurse: no
+      patterns: "*.*"
+    register: files_to_copy
+
+  - name: Install shutdown disabler files
+    copy:
+      src: "{{ item.path }}"
+      dest: "/usr/share/gnome-shell/extensions/BringOutSubmenuOfPowerOffLogoutButton@pratap.fastmail.fm/"
+      remote_src: true
+    with_items: "{{ files_to_copy.files }}"
+
+  - name: Install shutdown disabler schema
+    copy:
+      src: "/tmp/gse-bring-out-submenu-of-power-off-logout-{{ shutdown_disabler_ref }}/src/v-45-46-47-48-49/schemas/"
+      remote_src: true
+      dest: /usr/share/glib-2.0/schemas/
+
+  - name: Compile glib schemas
+    shell:
+      chdir: /usr/share/glib-2.0/schemas
+      cmd: glib-compile-schemas .
+
+  - name: Ensure a dconf profile directory
+    file:
+      path: /etc/dconf/profile
+      state: directory
+
+  - name: Create dconf profile for geoscripting
+    copy:
+      src: geoscripting
+      dest: /etc/dconf/profile/geoscripting
+
+  - name: Create dconf db directory for geoscripting
+    file:
+      path: /etc/dconf/db/geoscripting.d
+      state: directory
+
+  - name: Set shutdown button to disabled
+    copy:
+      src: 50-disable-shutdown
+      dest: /etc/dconf/db/geoscripting.d/50-disable-shutdown
+
+  - name: Create dconf db directory for GDM
+    file:
+      path: /etc/dconf/db/gdm.d
+      state: directory
+
+  - name: Create dconf profile for gdm
+    copy:
+      content: |
+        user-db:user
+        system-db:gdm
+        file-db:/usr/share/gdm/greeter-dconf-defaults
+      dest: /etc/dconf/profile/gdm
+
+  - name: Disable shutdown buttons in GDM
+    copy:
+      content: |
+        [org/gnome/login-screen]
+        disable-restart-buttons=true
+      dest: /etc/dconf/db/gdm.d/99-site-settings
+
+  - name: Enable dconf changes
+    shell:
+      cmd: dconf update
+
+  - name: Set the geoscripting dconf profile
+    copy:
+      src: 50-geoscripting-dconf.sh
+      dest: /etc/profile.d/50-geoscripting-dconf.sh
+
+  - name: Clean up unneeded files
+    file:
+      path: /tmp/gse-bring-out-submenu-of-power-off-logout-main
+      state: absent
+
+  - name: Restart GDM
+    service:
+      name: gdm
+      state: restarted
+
+  - name: Disable automatic updates
+    copy:
+      content: 'APT::Periodic::Unattended-Upgrade "0";'
+      dest: /etc/apt/apt.conf.d/99disable-auto-upgrades

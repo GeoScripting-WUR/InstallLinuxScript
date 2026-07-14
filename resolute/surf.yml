@@ -1,0 +1,32 @@
+---
+# Workarounds for the SURF Research Cloud VMs. You should use this in addition to "vm.yml" and "server.yml".
+- name: Work around SURF Research Cloud issues
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: Install debconf tools
+    apt:
+      name: debconf-utils
+  - name: Add new GRUB config
+    copy:
+      src: surf-grub-debconf.txt
+      dest: surf-grub-debconf.txt
+  - name: Update GRUB debconfig
+    command: debconf-set-selections < surf-grub-debconf.txt
+  - name: Clean up
+    file:
+      path: surf-grub-debconf.txt
+      state: absent
+
+  # Needed for Guacamole/nginx
+  - name: Enable HTTP over the firewall
+    ufw:
+      rule: allow
+      port: "80"
+      proto: tcp
+  - name: Enable HTTPS through firewall
+    ufw:
+      rule: allow
+      port: "443"
+      proto: tcp

@@ -1,0 +1,10 @@
+---
+# Install ansible-galaxy via Ansible.
+- name: Install Ansible Galaxy
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: Install necessary collections
+    command: ansible-galaxy collection install --server="https://old-galaxy.ansible.com" --ignore-certs community.general community.postgresql
+
