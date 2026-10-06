@@ -67,7 +67,8 @@
 
   - name: Install software for VirtualBox
     apt:
-        name:
+      update_cache: yes
+      name:
         - python3-apt
         - python3-dbus
         - python3-gi
